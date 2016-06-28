@@ -1,0 +1,67 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/list.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="41" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="10" num="5" siteid="$siteid" order="listorder ASC"}
+      <div class="ba-case-l">
+         <ul>
+          <li class="tital">帮助中心</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+         </ul>
+         <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 列表</div>
+      </div>
+      {/pc}
+
+          {pc:content  action="lists" catid="41" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+
+      </div>
+      <div class="c"></div>
+</div>
+
+<div class="main bzzx">
+    <div class="cjwt l">
+        <h2>常见问题</h2>
+        {pc:get sql="SELECT content FROM v9_page WHERE catid=12"}
+        {loop $data $val}
+           {$val[content]}
+        {/loop}
+        {/pc}
+        <!--        
+        <div class="qa-m">
+        <div class="qa-qt">常见问题</div>
+        <div class="qa-qb">&nbsp;</div>
+        </div>
+        <div class="qa-m">
+        <div class="qa-at">常见问题，答案</div>
+        <div class="qa-ab">&nbsp;</div>
+        </div>
+        <div class="qab"></div>
+        -->        
+    </div>
+    <div class="xiazai r">
+        <h2>下载中心</h2>
+        <ul>
+        {pc:content action="lists" catid="13" num="10" order="listorder DESC"}
+			{loop $data $r}
+            <li>
+                 <span>·</span><a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title],34,'…')}</a>
+            </li>
+            {/loop}
+        {/pc}
+        </ul>
+    </div>
+    <div class="c"></div>
+</div>
+{template "content","footer"}

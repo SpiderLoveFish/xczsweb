@@ -1,0 +1,102 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/show.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="38" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="7" num="5" siteid="$siteid" order="listorder ASC"}
+      <ul>
+          <li class="tital">公司团队</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+          <br><div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+      </ul>
+      {/pc}
+
+          {pc:content  action="lists" catid="38" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+
+
+      </div>
+</div>
+
+<div class="main show">
+   <div class="col-left l">
+        <div class="mainbox sjnr">
+        	<div class="img l"><img src="{thumb($thumb,200,250)}" width="180" height="225" alt="{$title}"><p>{$title} - {$zhiwu}  <span>[关注:<span id="hits"></span>]</span></p></div>
+            <div class="wzr l">
+                <h1>{$title}  </h1>
+                <p class="ll lll llt"><b>职务：</b>{$zhiwu}</p>
+                <p class="ll llt"><b>在线咨询：</b><a href="tencent://message/?uin={$QQ}&Site=&Menu=yes" class="zx" title="咨询设计师{$title}">QQ咨询</a></p>
+                {php $sj=date('Y',SYS_TIME)-date('Y',strtotime($rzsj))}
+                <p class="ll lll"><b>从业时间：</b>{$sj}年</p>
+                <p class="ll">{if !$weixin}{else}<b>个人微信：</b><a class="wx">查看微信<em><img src="{$weixin}" width="150" height="150"></em></a>{/if}</p>
+                <div class="c"></div>
+                <div class="content">{$content}</div>
+            </div>
+            <div class="c"></div>
+            {if $catid!=27 || $catid!=26}
+			<div class="xgal">
+                <h3>相关案例</h3>
+                {pc:get sql="SELECT * FROM v9_picture WHERE sjs='$id' " num="8" page="$page" order="id DESC"}
+                <ul>
+                    {loop $data $r}
+                    {php $cad++}
+                    <li{if $cad%4==0} class="mr0"{/if}>
+			    <a href="{$r[url]}" title="{$r[title]}" target="_blank">
+                   <div class="img-wrap"><img src="{thumb($r[thumb],270,200)}" width="230" height="176" alt="{$r[title]}"/></div>
+			       <p class="xm">{str_cut($r[title],40)}</p>
+                   <p>
+                    <i>风格：{if $r[fg]==1}简约风格{elseif $r[fg]==2}现代风格{elseif $r[fg]==3}中式风格{elseif $r[fg]==4}欧式风格{elseif $r[fg]==5}美式风格{elseif $r[fg]==6}田园风格{elseif $r[fg]==7}新古典风格{elseif $r[fg]==9}混搭风格{elseif $r[fg]==9}地中海风格{else}LOFT风格{/if}</i>
+                    <i>户型：{if $r[hx]==1}一室一厅{elseif $r[hx]==2}两室一厅{elseif $r[hx]==3}两室两厅{elseif $r[hx]==4}三室两厅{elseif $r[hx]==5}复式{elseif $r[hx]==6}别墅{elseif $r[hx]==7}酒店{elseif $r[hx]==8}办公{else}商业空间{/if}</i><br>
+                    <i>面积：{$r[mianji]}㎡</i><i class="ls">造价：{$r[jage]}万</i>
+                   </p>
+                </a>
+                    </li>
+                    {/loop}
+                </ul>
+                <div class="c"></div>
+			    <div id="pages" class="text-c">{$pages}</div>
+                {/pc}
+            </div>
+            {/if}
+  {if $allow_comment && module_exists('comment')}
+  <div class="pad25"> 
+   <!-- UY BEGIN -->
+   <div id="uyan_frame" style="margin-top:15px"></div>
+   <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2047776"></script>
+   <!-- UY END -->
+  </div>
+  {/if}
+
+         </div>
+  </div>
+  <div class="col-right r">
+      <div class="pad25">
+          <h3 class="t2 top">设计师排行榜 TOP</h3>
+          <ul class="phb">
+              {pc:content action="hits" catid="25" num="5" order="views DESC"}
+              {loop $data $r}
+              {php $phb++}
+              {php $db = pc_base::load_model('hits_model'); $_r = $db->get_one(array('hitsid'=>'c-'.$modelid.'-'.$r[id])); $views = $_r[views]; } 
+              {php $comment_tag = pc_base::load_app_class("comment_tag", "comment"); $comment_total = $comment_tag->count(array('commentid'=>'content_'.$r[catid].'-'.$r[id].'-'.$modelid));} 
+              <li class=phb{$phb}><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],80,80)}" alt="{$r[title]}" width="80" height="80"><p><b>{str_cut($r[title],40)}</b><br>{$r[zhiwu]}<br>关注：{$views}</p></a></li>
+              {/loop}
+              {/pc}
+          </ul>
+          <p class="jrwm"><a href="{$CATEGORYS[4][url]}" target="_blank">加入我们</a></p>
+      </div>
+  </div>
+  <div class="c"></div>
+</div>
+
+<script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "content","footer"}

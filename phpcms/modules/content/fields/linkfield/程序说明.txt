@@ -1,0 +1,12 @@
+.把文件解压到\phpcms\modules\content\fields\linkfield\文件下
+
+2.修改\phpcms\modules\content\fields\fields.inc.php文件
+
+在'omnipotent'=>'万能字段'下一行增加
+
+'linkfield'=>'并联',
+
+去后台内容—模型管理——添加字段选择并联
+
+在相关参数加入
+以图为例

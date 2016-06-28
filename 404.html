@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>心成装饰 | 错误页面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        html,body{margin:0;text-align:center;background:#fff;}
+        body{font-size: 12px;}
+        #wrap{width:500px;margin:auto; text-align:left; padding:20px;padding-top:50px;}
+        #logo{position: relative; width:90px;padding: 65px 0 65px 0;}
+        #content{position: absolute;padding: 20px;margin-left: 110px; margin-top:-180px; height: 140px;border-left: solid 1px #999;}
+        h2{font-size: 16px;}
+        a:link,a:visited,a:hover,a:active{text-decoration:none;color: #900;}
+        a:hover{text-decoration:underline;}
+        li{line-height:22px;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+ 
+        <script type="text/javascript">        var sec=15;    </script>
+ 
+        <div id="logo">
+            <img src="statics/images/xczs/logo.png" style="border:0;" width="90" alt="心成Logo" /></div>
+        <div id="content">
+            <h2>
+                噢！由于网站升级改版，在你访问时发生了错误 ！</h2>
+            <p>
+                可能是你要访问的页面已不存在，请确认再重试。
+            </p>
+            <p>
+                你还可以…</p>
+            <ul>
+                <li><a href="http://www.xczs.com/">直接访问首页</a></li>
+                <li><a href="http://www.xczs.com/" onclick="history.back();return false;">返回上一页</a></li>
+                <li><a id="second" href="http://www.xczs.com/">
+ 
+                    <script type="text/javascript">document.write(sec)</script>
+ 
+                    秒钟后将自动返回首页</a></li>
+            </ul>
+        </div>
+    </div>
+ 
+    <script type="text/javascript"> 
+        function jump()
+        {
+            location.href="/";
+        }    
+        var s=0;    
+        function show()
+        {
+            s=s+1;
+            if (s>sec) return;
+            o=document.getElementById('second');
+            o.innerHTML=(sec-s)+'秒钟后将会跳转到首页';
+        }   
+        setTimeout('jump()',sec*1000);
+        setInterval('show()',1000);
+    </script>
+ 
+</body>
+</html>

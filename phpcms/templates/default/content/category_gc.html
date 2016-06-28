@@ -1,0 +1,64 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/list.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="37" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="9" num="5" siteid="$siteid" order="listorder ASC"}
+      <div class="ba-case-l">
+         <ul>
+          <li class="tital">标准化工程</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+         </ul>
+         <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 列表</div>
+      </div>
+      {/pc}
+
+          {pc:content  action="lists" catid="37" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+
+      </div>
+</div>
+
+
+<div  class="main bzgc">
+    
+    <div class="bz-mai">
+    {loop subcat($catid,0) $r}
+    {php $bz++}
+    <div class="bz-list">
+        <div class="bz-po bzl{$bz} l">
+            <p><a href="{$r[url]}" target="_blank">{$r[catname]}</a></p><span>{$r[description]}</span>
+        </div>
+        <div class="bz-r r">
+            <ul class="bz-img">
+            {pc:content  action="lists" catid="$r[catid]" order="listorder DESC" num="5" thumb="1" return="info"}
+                    {loop $info $v}
+                    <li><a href="{$v[url]}" title="{$v[title]}" target="_blank"><img src="{thumb($v[thumb],230,175)}" alt="{$v[title]}" width="230" height="175"></a><p>{str_cut($v[title],35,'…')}</p></li>
+                    {/loop}
+            {/pc}
+            </ul>
+            <div class="c"></div>
+            <ul class="bz-wz">
+            {pc:content  action="lists" catid="$r[catid]" order="listorder DESC" num="5" return="info"}
+                    {loop $info $v}
+                    <li><a href="{$v[url]}" title="{$v[title]}" target="_blank"><span>·</span>{str_cut($v[title],35,'…')}</a></li>
+                    {/loop}
+            {/pc}
+            </ul>
+        </div>
+        <div class="c"></div>
+    </div>
+    {/loop}
+    </div>
+</div>
+{template "content","footer"}

@@ -1,0 +1,49 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/list.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="39" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="6" num="5" siteid="$siteid" order="listorder ASC"}
+      <div class="ba-case-l">
+         <ul>
+          <li class="tital">新闻中心</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+         </ul>
+         <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 列表</div>
+      </div>
+      {/pc}
+
+          {pc:content  action="lists" catid="39" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+
+      </div>
+      <div class="c"></div>
+</div>
+
+
+<div class="main jxsp">
+    <div class="bor">
+    	{pc:content action="lists" catid="$catid" num="12" order="listorder DESC" page="$page"}
+        <ul class="list-hf">
+            {loop $data $r}
+            {php $jssp++}
+            <li{if $jssp%3==0} class="mr0"{/if}><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],366,103)}" alt="{$r[title]}" width="366" height="103"><p><b>{str_cut($r[title],70)}</b><br>活动时间：<span>{$r[kssj]}</span> ~ <span>{$r[jssj]}</span></p></a></li>
+            {/loop}
+        </ul>
+        <div class="c"></div>
+        <div id="pages" class="text-c">{$pages}</div>
+        {/pc}
+        <div class="c"></div>
+    </div>
+</div>
+{template "content","footer"}

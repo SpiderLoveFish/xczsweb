@@ -1,0 +1,119 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/list.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="36" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="8" num="5" siteid="$siteid" order="listorder ASC"}
+      <div class="ba-case-l">
+         <ul>
+          <li class="tital">经典案例</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+         </ul>
+         <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 列表</div>
+      </div>
+      {/pc}
+
+          {pc:content  action="lists" catid="36" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+
+      </div>
+</div>
+
+
+<div class="main list-m">
+    <!--左侧开始-->
+        
+        <div class="case-shaixuan">
+            <div class="SearchBox">
+                <p>案例搜索</p>
+                <ul>
+                    <li>
+                           <form id='searchfrom' action="" name="myform" method="get">
+                                <input type="text" id="txtKeyord" name='info[title]' placeholder="输入小区名称"  value="输入小区名称" onfocus="if(this.value=='输入小区名称'){this.value=''}" onblur="if(this.value==''){this.value='输入小区名称'}"class="se-box"   >
+                                <input type="submit" value="搜 索" class="se-b" />
+                                <input type="hidden" name="m" value="content"> 
+                                <input type="hidden" name="c" value="search"> 
+                                <input type="hidden" name="a" value="init"> 
+                                <input type="hidden" name="catid" value="29"> 
+                                <input type="hidden" name="dosubmit" value="1">
+                            </form>
+                    </li>
+                </ul>
+                <div class="c"></div>
+                <script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=16"></script>
+            </div>
+            <div class="case-sx-list">
+                <b>装修风格</b>
+                <ul>
+                    <li>
+                    {loop filters('fg',3) $r} 
+                      {$r[menu]} 
+                    {/loop} 
+                    </li>
+                </ul>
+            </div>
+            <div class="case-sx-list">
+                <b>空间户型</b>
+                <ul>
+                    <li>
+                    {loop filters('hx',3) $r} 
+                      {$r[menu]} 
+                    {/loop} 
+                    </li>
+                </ul>
+            </div>
+            <div class="case-sx-list">
+                <b>装修面积</b>
+                <ul>
+                    <li>
+                    {loop filters('mj',3) $r} 
+                      {$r[menu]} 
+                    {/loop} 
+                    </li>
+                </ul>
+            </div>
+            <div class="case-sx-list mb0">
+                <b>装修造价</b>
+                <ul>
+                    <li>
+                    {loop filters('zj',3) $r} 
+                      {$r[menu]} 
+                    {/loop} 
+                    </li>
+                </ul>
+            </div>
+            <div class="c"></div>
+        </div>
+        
+    {php $sql = structure_filters_sql(3);} 
+    {pc:content action="lists" where="$sql" catid="$catid" modelid="$modelid" num="12" page="$page" order="listorder DESC" moreinfo="1"}
+		<ul class="photo-list">
+			{loop $data $r}
+            {php $ce++}
+			<li{if $ce%4==0} class="mr0"{/if}>
+			    <a href="{$r[url]}" title="{$r[title]}" target="_blank">
+                   <div class="img-wrap"><img src="{thumb($r[thumb],270,200)}" width="288" height="220" alt="{$r[title]}"/></div>
+			       <p class="xm">{str_cut($r[title],40)}<span>[{if $r[fg]==1}简约风格{elseif $r[fg]==2}现代风格{elseif $r[fg]==3}中式风格{elseif $r[fg]==4}欧式风格{elseif $r[fg]==5}美式风格{elseif $r[fg]==6}田园风格{elseif $r[fg]==7}新古典风格{elseif $r[fg]==9}混搭风格{elseif $r[fg]==9}地中海风格{else}LOFT风格{/if}]</span></p>
+                   <p>
+                    <i>户型：{if $r[hx]==1}一室一厅{elseif $r[hx]==2}两室一厅{elseif $r[hx]==3}两室两厅{elseif $r[hx]==4}三室两厅{elseif $r[hx]==5}复式{elseif $r[hx]==6}别墅{elseif $r[hx]==7}酒店{elseif $r[hx]==8}办公{else}商业空间{/if}</i>
+                    <i>面积：{$r[mianji]}㎡</i><i class="ls">造价：{$r[jage]}万</i>
+                   </p>
+                </a>
+			</li>
+			{/loop}
+		</ul>
+        <div class="c"></div>
+		<div id="pages" class="text-c">{$pages}</div>
+	{/pc}
+</div>
+{template "content","footer"}

@@ -1,0 +1,68 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/list.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="36" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="8" num="5" siteid="$siteid" order="listorder ASC"}
+      <div class="ba-case-l">
+         <ul>
+          <li class="tital">经典案例</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+         </ul>
+         <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 列表</div>
+      </div>
+      {/pc}
+          
+          {pc:content  action="lists" catid="36" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+          
+      </div>
+</div>
+
+
+<!--main-->
+<div class="main">
+
+	{loop $array_child $cid}
+	{php $chlidids = explode(',', $CATEGORYS[$cid][arrchildid])}
+	{php unset($chlidids[array_search($cid, $chlidids)]);$n=1;}
+    <div class="photo-cat" style=" margin-top:20px">
+        <div class="content">
+        	<h5>
+            <a href="{$CATEGORYS[$cid][url]}"><strong>{$CATEGORYS[$cid][catname]}</strong></a>
+			<span class="blue">
+            <a href="{$CATEGORYS[$cid][url]}" class="more">更多>></a>
+			{loop $chlidids $chlidid}
+            {if $n!=1} | {/if}
+				<a href="{$CATEGORYS[$chlidid][url]}">{$CATEGORYS[$chlidid][catname]}</a>
+			{/loop}
+			</span>
+			</h5>
+            <ul class="photo-list picbig" style=" margin-top:20px">
+				{pc:content action="lists" catid="$cid" num="30" order="id DESC"}
+					{loop $data $r}
+					<li style=" display:inline; float:left; margin:10px 10px 0 0">
+                    <div class="img-wrap">
+                        <a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],150,112)}" /></a>
+                    </div>
+                    <a href="{$r[url]}" title="{$r[title]}" target="_blank">{str_cut($r[title],28)}</a>
+					</li>
+					{/loop}
+				{/pc}
+            </ul>
+        </div>
+    </div>
+	<div class="c"></div>
+	{/loop}
+</div>
+{template "content","footer"}

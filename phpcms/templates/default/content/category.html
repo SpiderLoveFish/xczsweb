@@ -1,0 +1,88 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/list.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="39" order="listorder DESC"  num="1" return="info"}
+{loop $info $r}
+<div class="bg100 ba-case" style="background:url({$r[thumb]}) center no-repeat">
+{/loop}
+{/pc}
+
+      <div class="main">
+      {pc:content action="category" catid="6" num="5" siteid="$siteid" order="listorder ASC"}
+      <div class="ba-case-l">
+         <ul>
+          <li class="tital">新闻中心</li>
+          {loop $data $v}
+          <li{if $catid==$v[catid]} class="on"{/if}><a href="{$v[url]}">{$v[catname]}</a></li>
+          {/loop}
+         </ul>
+         <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 列表</div>
+      </div>
+      {/pc}
+
+          {pc:content  action="lists" catid="39" order="listorder DESC"  num="1" return="info"}
+          {loop $info $r}
+          <a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank" class="ba-case-a">{$r[title]}</a>
+          {/loop}
+          {/pc}
+
+
+      </div>
+      <div class="c"></div>
+</div>
+
+<div class="main huod">
+    <h2><span><a href="{$CATEGORYS[14][url]}" >更多装修活动 ></a></span>公司活动</h2>
+    <div class="tj l">
+    {pc:content  action="position" posid="10" order="listorder DESC" num="1"}
+        	{loop $data $r}
+                <a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],980,276)}" width="980" height="276" alt="{str_cut($r[title],36,'')}"><p class="tt">{str_cut($r[title],60,'…')}</p></a>
+                <p>活动时间：<span>{$r[kssj]}</span> ~ <span>{$r[jssj]}</span> | 活动地点：{$r[dizhi]}</p>
+            {/loop}
+    {/pc}
+    </div>
+    <ul class="hdli r">
+    {pc:content  action="lists" catid="14" order="listorder DESC" num="12" return="info"}
+            {loop $info $r}
+            <li><a href="{$r[url]}" title="{$r[title]}"><span>·</span>{str_cut($r[title],35,'')}</a></li>
+            {/loop}
+    {/pc}
+    </ul>
+    <div class="c"></div>
+</div>
+
+<div class="main xinsh">
+   <h2><span><a href="{$CATEGORYS[15][url]}" >更多 ></a></span>客户心声</h2>
+   <ul>
+   {pc:content  action="lists" catid="15" order="listorder DESC" num="3" return="info"}
+            {loop $info $r}
+            {php $xs++}
+               <li{if $xs%3==0} class="mr0"{/if}><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],150,130)}" width="150" height="130"><p><b>{str_cut($r[title],80,'…')}</b><span>{str_cut($r[description], 150)}</span></a></li>
+            {/loop}
+            {/pc}
+   </ul>
+   <div class="c"></div>
+</div>
+
+<div class="main xinwe">
+   <h2><span><a href="{$CATEGORYS[16][url]}">更多 ></a></span>装修指南</h2>
+   <ul>
+   {pc:content  action="position" posid="8" order="listorder DESC" num="3" return="info"}
+            {loop $info $r}
+            {php $xw++}
+               <li{if $xw%3==0} class="mr0"{/if}><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],380,278)}" width="380" height="278"><p><b>{str_cut($r[title],80,'…')}</b></a></li>
+            {/loop}
+            {/pc}
+   </ul>
+   <div class="c"></div>
+   <ul class="lib">
+   {pc:content  action="lists" catid="16" order="listorder DESC" num="12" return="info"}
+            {loop $info $r}
+            {php $xs1++}
+               <li{if $xs1%3==0} class="mr0"{/if}><a href="{$r[url]}" title="{$r[title]}" target="_blank"><span>·</span>{str_cut($r[title],80,'…')}</a></li>
+            {/loop}
+            {/pc}
+   </ul>
+   <div class="c"></div>
+</div>
+{template "content","footer"}

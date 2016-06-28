@@ -1,0 +1,55 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/page.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="40" order="listorder DESC"  num="1" return="info"}
+             {loop $info $r}
+                 <div class="bg100 ba-page" style="background:url({$r[thumb]}) center no-repeat"><a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank">{$r[title]}</a></div>
+             {/loop}
+{/pc}
+
+
+<div class="main page">
+    <ul class="p-tit">
+            <div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+        	{loop $arrchild_arr $cid}
+                <li{if $catid==$cid} class="cur"{/if}><a href="{$CATEGORYS[$cid][url]}" {if $cid==32} target="_blank"{/if}>{$CATEGORYS[$cid][catname]}</a></li>
+			{/loop}
+    </ul>
+    
+    <div class="c"></div>
+</div>
+<div class="main content">
+    {if $catid==21}
+    <div class="left-lx">{$content}</div>
+    <div class="right-lx">
+        <div style="width:600px;height:600px; border:5px solid #ddd" id="dituContent"></div>
+        <style type="text/css">
+        .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+        .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word; text-align:left}
+        </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+        <script type="text/javascript" src="{JS_PATH}xczs/map.js"></script>
+    </div>
+    {elseif $catid==22}
+        {$content}
+        <div class="ksbj">
+        <div class="bjbk">
+            <div class="bjwz l"><div class="bjwzbg"><div class="bjimg inbg">快速报价</div></div></div>
+            <div class="bjbd r"><iframe src="http://hefei.1j1j.cn/gsbj/bjjsq.jsp?jmid=ksxczs" width="960" height="166" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
+            <div class="c"></div>
+        </div>
+        </div>
+    {elseif $catid==23}
+        <div class="zxbx l" style="width:1200px"><iframe src="http://www.xczs.co/NoVerified/NVRepairTelphone.aspx" width="1200" height="800" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
+        <div class="zxbx-r r" style="margin-top:10px; display:none">
+        {pc:get sql="SELECT setting,name FROM v9_poster WHERE spaceid = 23 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="2"} 
+          {loop $data $r}
+          {php eval("\$narry =$r[setting];");} 
+          <a href="{$narry[1][linkurl]}" target="_blank"><img src="{$narry[1][imageurl]}" alt="{$r[name]}" style="width:100%; height:auto"/></a><br><br>
+          {/loop}
+          {/pc}
+        </div>
+    {/if}
+    <div class="c"></div>
+</div>
+{template "content","footer"}

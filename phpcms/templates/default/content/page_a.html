@@ -1,0 +1,55 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/page.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="35" order="listorder DESC"  num="1" return="info"}
+             {loop $info $r}
+                 <div class="bg100 ba-page" style="background:url({$r[thumb]}) center no-repeat"><a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank">{$r[title]}</a></div>
+             {/loop}
+{/pc}
+
+<div class="main page">
+    <ul class="p-tit">
+            <div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+        	{loop $arrchild_arr $cid}
+                <li{if $catid==$cid} class="cur"{/if}><a href="{$CATEGORYS[$cid][url]}">{$CATEGORYS[$cid][catname]}</a></li>
+			{/loop}
+    </ul>
+    
+    <div class="c"></div>
+</div>
+<div class="main content">
+   <div class="left l">{$content}</div>
+   <div class="right r">
+   {if $catid==2}
+          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="480" height="340"> 
+          <param name="movie" value="{IMG_PATH}xczs/vcastr22.swf?vcastr_file={IMG_PATH}xczs/xczs.flv&IsAutoPlay=1" allowfullscreen="true"> 
+          <param name="quality" value="high"> 
+          <param name="allowFullScreen" value="true" />
+          <embed src="{IMG_PATH}xczs/vcastr22.swf?vcastr_file={IMG_PATH}xczs/xczs.flv&IsAutoPlay=1" allowfullscreen="true" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="480" height="340"> 
+          </embed>
+          </object>
+           
+    {elseif $catid==3}
+          {pc:get sql="SELECT setting,name FROM v9_poster WHERE spaceid = 11 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="3"}{/pc}
+          {pc:get sql="SELECT setting,name FROM v9_poster WHERE spaceid = 11 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="3"} 
+          {loop $data $r}
+          {php eval("\$narry =$r[setting];");} 
+          <a href="{$narry[1][linkurl]}" target="_blank"><img src="{$narry[1][imageurl]}" alt="{$r[name]}" width="480"/></a><br><br>
+          {/loop}
+          {/pc}
+    {elseif $catid==4}
+          {pc:get sql="SELECT setting,name FROM v9_poster WHERE spaceid = 12 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="3"}{/pc}
+          {pc:get sql="SELECT setting,name FROM v9_poster WHERE spaceid = 12 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="3"} 
+          {loop $data $r}
+          {php eval("\$narry =$r[setting];");} 
+          <a href="{$narry[1][linkurl]}" target="_blank"><img src="{$narry[1][imageurl]}" alt="{$r[name]}" width="480"/></a><br><br>
+          {/loop}
+          {/pc}
+    {/if}
+    </div>
+    <div class="c"></div>
+</div>
+{template "content","footer"}
+<script type="text/javascript">
+swfobject.registerObject("FLVPlayer");
+</script>

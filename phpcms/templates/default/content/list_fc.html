@@ -1,0 +1,31 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/page.css" rel="stylesheet" type="text/css" />
+{pc:content  action="lists" catid="35" order="listorder DESC"  num="1" return="info"}
+             {loop $info $r}
+                 <div class="bg100 ba-page" style="background:url({$r[thumb]}) center no-repeat"><a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank">{$r[title]}</a></div>
+             {/loop}
+{/pc}
+<div class="main page">
+    <ul class="p-tit">
+         <div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+        	{pc:content action="category" catid="1" num="6" siteid="$siteid" order="listorder ASC"}
+            {loop $data $k $r}
+                <li{if $catid==$r[catid]} class="cur"{/if}><a href="{$r[url]}">{$r[catname]}</a></li>
+			{/loop}
+            {/pc}
+    </ul>
+    <div class="c"></div>
+</div>
+<div class="main content">
+    	{pc:content action="lists" catid="$catid" num="9" order="listorder DESC" page="$page"}
+        <ul class="list-fc">
+            {loop $data $r}
+            <li><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],350,240)}" alt="{$r[title]}" width="350" height="240"><p>{$r[title]}</p></a></li>
+            {/loop}
+        </ul>
+        <div class="c"></div>
+        <div id="pages" class="text-c">{$pages}</div>
+        {/pc}
+    <div class="c"></div>
+</div>
+{template "content","footer"}

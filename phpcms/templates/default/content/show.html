@@ -1,0 +1,86 @@
+{template "content","header"}
+<link href="{CSS_PATH}xczs/show.css" rel="stylesheet" type="text/css" />
+
+{pc:content  action="lists" catid="42" order="listorder DESC"  num="1" return="info"}
+             {loop $info $r}
+                 <div class="bg100 ba-page" style="background:url({$r[thumb]}) center no-repeat"><a href="{if !$r[islink]==0}{$r[url]}{/if}" target="_blank">{$r[title]}</a></div>
+             {/loop}
+{/pc}
+
+<div class="main show">
+   <div class="crumbs">当前位置：<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+   <div class="col-left l">
+        <div class="mainbox">
+        	<h1>{$title}<br />
+            <span>{$inputtime}&nbsp;&nbsp;&nbsp;来源：{if !$copyfrom}心成装饰{else}{$copyfrom}{/if}&nbsp;&nbsp;&nbsp; 点击：</span><span id="hits"></span></h1>
+            {if $catid!=14}
+                {if $catid==13}
+                    <div class="summary">
+                        {loop $downfiles $r}
+                           <b>{$r}</b>
+                        {/loop}
+                    </div>
+                {else}
+                    {if $description}<div class="summary" >摘要：{$description}</div>{/if}
+                {/if}
+            {/if}
+            {if $catid==14}
+               <p><img src="{thumb($thumb,980,276)}" alt="{$title}" width="980" height="276"></p>
+               <p style="border-bottom:5px solid #ddd; line-height:40px">活动时间：<span style="color:#d8271c; font-weight:bold">{$kssj}</span> ~ <span style="color:#d8271c; font-weight:bold">{$jssj}</span> | 活动地点：{$dizhi}</p>
+            {/if}
+			<div class="content">
+            {$content}
+			</div>
+            <div class="c"></div>
+			<div id="pages" class="text-c">{$pages}</div>
+            <p class="f14">
+                <strong>上一篇：<a href="{$previous_page[url]}">{$previous_page[title]}</a></strong>
+                <strong>下一篇：<a href="{$next_page[url]}">{$next_page[title]}</a></strong>
+            </p>
+  {if $allow_comment && module_exists('comment')}
+  <div class="pad25"> 
+   <!-- UY BEGIN -->
+   <div id="uyan_frame" style="margin-top:15px"></div>
+   <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2047776"></script>
+   <!-- UY END -->
+  </div>
+  {/if}
+
+         </div>
+  </div>
+  <div class="col-right r">
+      <div class="pad25">
+          {if $catid==14}
+           <h3 class="t2">其他公司活动</h3>
+           <ul class="sp">
+              {pc:content action="lists" catid="14" num="5" order="id DESC"}
+              {loop $data $r}
+              <li><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],180,51)}" alt="{$r[title]}" width="180" height="51"><p>{str_cut($r[title],40)}</p></a></li>
+              {/loop}
+              {/pc}
+          </ul>
+          {/if}
+          <h3 class="t2">样板案例视频</h3>
+          <ul class="sp">
+              {pc:content action="lists" catid="31" num="2" order="id DESC"}
+              {loop $data $r}
+              <li><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],180,118)}" alt="{$r[title]}" width="180" height="118"><p>{str_cut($r[title],40)}</p></a></li>
+              {/loop}
+              {/pc}
+          </ul>
+          <h3 class="t2">装修指南</h3>
+          <ul class="sp">
+              {pc:content action="lists" catid="16" num="2" thumb="1" order="id DESC"}
+              {loop $data $r}
+              <li><a href="{$r[url]}" title="{$r[title]}" target="_blank"><img src="{thumb($r[thumb],180,118)}" alt="{$r[title]}" width="180" height="118"><p>{str_cut($r[title],40)}</p></a></li>
+              {/loop}
+              {/pc}
+          </ul>
+
+      </div>
+  </div>
+  <div class="c"></div>
+</div>
+
+<script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "content","footer"}
