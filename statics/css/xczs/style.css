@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* CSS Document */
+
+html,body,div,form,ul,li,dl,dt,dd,ol,p,h1,h2,h3,h4,h5,h6{ margin:0; padding:0}
+body{font-size:14px;line-height:24px;font-family:"Microsoft YaHei","微软雅黑","Arial","宋体","Arial Narrow"; min-width:1200px; color:#333}
+li{ list-style:none}
+img{ border:0}
+img:hover{filter:alpha(opacity=90); opacity:0.9; -moz-opacity:0.9; -ms-opacity:0.9; -o-opacity:0.9; -webkit-opacity:0.9}
+a{ color:#333; text-decoration:none}
+a:hover{ color:#d8271c}
+.c{ clear:both}
+.l{ float:left; display:inline}
+.r{ float:right; display:inline}
+.bg100{ width:100%}
+.main{ width:1200px; margin:0 auto}
+.sbg{ background:url(../../images/xczs/logo-bg.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/logo-bg.png"); _background:none}
+
+.header{ height:184px}
+.header .top-bg{ width:100%; height:40px; background:#f0f0f0; border-bottom:1px solid #e0e0e0}
+.header .top{ line-height:40px; font-size:12px; color:#777}
+.header .top p.wl{ display:inline; width:900px; overflow:hidden}
+.header .top span.wr a{color:#777}
+.header .top span.wr a:hover{color:#d8271c}
+.header .top span.wr em{ font-style:normal; margin:0 5px}
+
+.header .logo-tel{ height:147px}
+.header .logo-tel .wx{ width:164px; height:93px; background-position:0 -159px; margin-top:29px}
+.header .logo-tel .wx img{ padding:9px 12px; float:left}
+.header .logo-tel .wx span{ display:inline-block; float:left; line-height:18px; color:#555; margin-top:20px}
+.header .logo-tel .tel{ width:261px; height:55px; background-position:0 -99px; text-indent:-9999px; margin:47px 13px 0 0}
+.header .logo-tel .logo{ width:270px; height:88px; background-position:0 0; margin-top:29px}
+.header .logo-tel .logo a{ width:100%; height:100%; display:block; text-indent:-9999px}
+
+.nemu{ height:48px; background:#fbc509; border-bottom:1px solid #d8271c}
+.Nav li{ width:133px; display:inline; float:left; font-size:16px; line-height:48px; text-align:center}
+
+.Nav li .tt{width:100%;float:left;height:80px;position:absolute;z-index:990;top:232px;left:0;background:url(../../images/xczs/bbg.png) repeat;display:none;color:#FFF; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/bbg.png"); _background:none}
+.Nav li.hover, .Nav li .current{display:block;}
+.Nav li .tt a{height:80px;float:left;color:#fff;line-height:80px;padding-top:0;border:none;background:none; font-size:14px; margin-right:30px;display:inline-block; padding-left:15px; background:url(../../images/xczs/xiao.png) 0 center no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/xiao.png"); _background:none}
+.Nav li .tt a:hover{ color:#fbc509; background:url(../../images/xczs/xiaoh.png) 0 center no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/xiaoh.png"); _background:none}
+.Nav li a.da:hover{font-weight:bold}
+.Nav li.on a.da{ display:block; width:100%; height:100%; background:#d8271c; color:#fff; font-weight:bold}
+.Nav li .tt .xiao1{ margin-left:170px}
+.Nav li .tt .xiao2{ margin-left:303px}
+.Nav li .tt .xiao3{ margin-left:430px}
+.Nav li .tt .xiao4{ margin-left:570px}
+.Nav li .tt .xiao5{ margin-left:703px}
+.Nav li .tt .xiao6{ margin-left:765px}
+.Nav li .tt .xiao7{ margin-left:970px}
+
+.ba-page{ height:200px; margin-top:1px}
+.ba-page a{ display:block; width:100%; height:100%; text-indent:-9999px}
+
+.text-c{ text-align:center}
+.text-c a{line-height:30px; display:inline; background:#eee; border:1px solid #ccc; padding:2px 8px; border-radius:3px; -moz-border-radius:3px; -ms-border-radius:3px; -o-border-radius:3px; -webkit-border-radius:3px}
+.text-c span{ background:#d8271c; padding:2px 8px; border:1px solid #d8271c; color:#fff; border-radius:3px; -moz-border-radius:3px; -ms-border-radius:3px; -o-border-radius:3px; -webkit-border-radius:3px}
+
+.footer{ border-top:5px solid #d8271c; padding:45px 0; background:url(../../images/xczs/fbg.png) #fafafa; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/fbg.png"); _background:none}
+.footer .wx{ width:183px; height:105px; background-position:0 -252px}
+.footer .wx img{ padding:11px 14px; float:left}
+.footer .wx span{ display:inline-block; float:left; line-height:18px; color:#555; margin-top:24px}
+.footer .lxfs{ margin:4px 25px 0 0; font-size:16px}
+.footer .lxfs ul li{ height:18px; line-height:18px; margin-bottom:8px}
+.footer .lxfs ul li img{ float:left; margin-right:25px}
+.footer .f-logo{ width:270px; height:88px; background-position:0 0; margin-top:5px}
+.footer .f-logo a{ width:100%; height:100%; display:block; text-indent:-9999px}
+.bottom{ height:50px; line-height:50px; background:#fbc509; text-align:center; font-size:12px}
+
+
+#iconDiv1{display:none;}
+.kfbg{ background:url(../../images/xczs/kefu.png) no-repeat;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/kefu.png");_background:none}
+#big_C{ position:fixed;_position:absolute;width:140px;height:464px;right:0px;top:235px; z-index:100002}
+#big_C .top{ height:49px; background-position:0 0}
+#big_C .btn1{position:absolute;width:20px;height:20px;top:14px;right:12px; background:none;display:inline-block;text-decoration:none;cursor:pointer;}
+#big_C .kefu-list{background:url(../../images/xczs/kefu-bg.png) repeat-y;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/kefu-bg.png");_background:none}
+#big_C .kefu-list p{ width:102px; padding:20px 19px 0; text-align:center; font-weight:bold; font-size:16px}
+#big_C .kefu-list ul{ margin:5px 0 0 5px}
+#big_C .kefu-list ul li{ height:30px; line-height:30px; background:url(../../images/xczs/wpa_a01.png) no-repeat center}
+#big_C .kefu-list ul li:hover{ background:url(../../images/xczs/wpa_a03.png) no-repeat center;;transition:background 1s linear 0s; -moz-transition:background 1s linear 0s; -ms-transition:background 1s linear 0s; -o-transition:background 1s linear 0s; -webkit-transition:background 1s linear 0s}
+#big_C .kefu-list ul li a{ padding-left:50px; display:inline-block}
+#big_C .kefu-list ul li a:hover{ color:#fff}
+#big_C .kefu-list ul li:hover a{ color:#fff}
+#big_C .wyzx{ height:45px; background-position:0 -52px; padding-top:10px}
+#big_C .wyzx a{ display:block; width:102px; height:30px; background:#fbc509; margin-left:22px; text-align:center; line-height:30px; font-weight:bold; border-radius:3px; -moz-border-radius:3px; -ms-border-radius:3px; -o-border-radius:3px; -webkit-border-radius:3px}
+#big_C .wyzx a:hover{background:#d8271c; color:#fff; transition:background 1s linear 0s; -moz-transition:background 1s linear 0s; -ms-transition:background 1s linear 0s; -o-transition:background 1s linear 0s; -webkit-transition:background 1s linear 0s}
+#big_C .btn6{ display:none}
+#big_C .btn6 p{width:113px; height:38px;padding-left:27px; background-position:0 -112px;cursor:pointer; color:#d8271c; line-height:36px; font-size:14px}
+#big_C .btn6:hover p{background-position:0 -154px; color:#fff}
+
+#small_C{position:fixed;_position:absolute;width:30px;height:125px;right:1px;top:50%; margin-top:-60px; z-index:100001}
+#small_C .stb{position:absolute;width:30px;height:95px;left:0px;top:0px; background-position:-3px -195px;cursor:pointer}
+#small_C .slbxs{position: absolute; width:30px;height:30px;left:0px;bottom:0px; background-position:-34px -195px;cursor:pointer}
+#small_C .slbxs:hover{position: absolute; width:30px;height:30px;left: 0px;bottom:0px; background-position:-34px -226px}
+#big_C #wx{display: none;width: 150px;height: 150px;position: absolute;top: 220px;left: -150px;}

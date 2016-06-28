@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+
+.ba-case{ height:200px; margin-top:1px}
+.ba-case .ba-case-l{ display:inline; float:left}
+.ba-case .ba-case-l ul{ padding-top:120px; height:36px}
+.ba-case .ba-case-l ul li{ display:inline; float:left; padding:3px 15px; border-radius:20px; border:1px solid #d8271c; margin-right:10px; background:#eee; font-weight:bold}
+.ba-case .ba-case-l ul li.tital{ border:none; font-size:32px; background:none; font-weight:100; padding-left:0; padding-right:20px}
+.ba-case .ba-case-l ul li:hover{ background:#fbc509; transition:background 1s linear 0s; -moz-transition:background 1s linear 0s; -ms-transition:background 1s linear 0s; -o-transition:background 1s linear 0s; -webkit-transition:background 1s linear 0s}
+.ba-case .ba-case-l ul li.tital:hover{background:none; }
+.ba-case .ba-case-l ul li.on{ background:#fbc509}
+.ba-case .ba-case-l .crumbs{font-size:12px; margin-top:8px}
+.ba-case a.ba-case-a{ display:inline-block; float:right; width:400px; height:200px; text-indent:-9999px}
+
+.list-m{ margin-top:20px; margin-bottom:20px}
+.list-m .case-shaixuan{ border:1px solid #ddd; padding:10px 20px; margin-top:10px; background:#fcfcfc}
+.list-m .case-shaixuan .SearchBox{  display:inline; float:right; line-height:40px}
+.list-m .case-shaixuan .SearchBox p{ display:inline; float:left; margin-right:20px; font-weight:bold}
+.list-m .case-shaixuan .SearchBox ul{ display:inline; float:left}
+.list-m .case-shaixuan .SearchBox img{ margin-top:20px}
+.list-m .case-shaixuan .case-sx-list{ width:800px; height:40px; line-height:40px; float:left; display:inline; clear:left; border-bottom:1px dashed #eee; overflow:hidden}
+.list-m .case-shaixuan .mb0{ border-bottom:0}
+.list-m .case-shaixuan .case-sx-list b{ float:left; margin-right:20px}
+.list-m .case-shaixuan .case-sx-list ul{ display:inline; float:left}
+.list-m .case-shaixuan .case-sx-list ul a{ margin-right:10px}
+.list-m .case-shaixuan .case-sx-list ul em{ margin-right:10px; font-style:normal; line-height:20px; margin-top:10px; background:#efefef; border:1px solid #fbc509; border-radius:10px; padding:0 5px}
+
+.list-m .photo-list{ margin-top:16px}
+.list-m .photo-list li{ display:inline; float:left; width:288px; height:290px; margin:0 16px 16px 0; overflow:hidden}
+.list-m .photo-list li.mr0{ margin-right:0}
+.list-m .photo-list li a{ display:block; width:288px; height:290px; background:#eee}
+.list-m .photo-list li a:hover{ background:#fbc509; transition:background 2s linear 0s; -moz-transition:background 2s linear 0s; -ms-transition:background 2s linear 0s; -o-transition:background 2s linear 0s; -webkit-transition:background 2s linear 0s}
+.list-m .photo-list li p{ line-height:25px; padding-left:10px}
+.list-m .photo-list li p.xm{ margin-top:10px; font-weight:bold}
+.list-m .photo-list li p span{ margin-left:10px}
+.list-m .photo-list li p i{ font-size:12px; font-style:normal; text-align:justify; margin-right:10px}
+.list-m .photo-list li p i.ls{ margin-right:0}
+
+.jxsp{ margin-top:50px; margin-bottom:50px}
+.bor{ border:1px solid #ddd; padding:25px}
+.jxsp .list-fc li{ width:366px; height:300px; display:inline; float:left; margin-right:25px}
+.jxsp .list-fc li.mr0{ margin-right:0}
+.jxsp .list-fc li p{ line-height:30px}
+
+.bz-mai{ margin-bottom:20px}
+.bz-mai .bz-list{ height:240px; margin-top:20px}
+.bz-mai .bz-list .bz-po{ width:200px; height:240px; border-top-left-radius:20px; border-bottom-left-radius:20px; text-align:center; background:url(../../images/xczs/bfz.png) right center #fbc509 no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/bfz.png"); _background:none}
+.bz-mai .bz-list .bzl1{ background-color:#fbc509}
+.bz-mai .bz-list .bzl2{ background-color:#d8271c}
+.bz-mai .bz-list .bzl3{ background-color:#fbc509}
+.bz-mai .bz-list .bzl4{ background-color:#d8271c}
+.bz-mai .bz-list .bz-po p{ font-size:24px; padding:80px 0 20px}
+.bz-mai .bz-list .bz-po p a{ color:#fff}
+.bz-mai .bz-list .bz-r{ width:1000px}
+.bz-mai .bz-list .bz-img{ height:175px}
+.bz-mai .bz-list .bz-img li{ width:230px; display:inline-block; float:left;  margin-left:20px; position:relative; z-index:1}
+.bz-mai .bz-list .bz-img li p{ position:absolute; z-index:2; left:0; bottom:0; line-height:30px; color:#fff; text-align:center; width:230px; background:url(../../images/xczs/bbg.png); _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/bbg.png"); _background:none }
+.bz-mai .bz-list .bz-wz{ height:50px; margin-top:15px}
+.bz-mai .bz-list .bz-wz li{ height:25px; line-height:25px; width:230px; display:inline-block; margin-left:20px}
+.bz-mai .bz-list .bz-wz li span{ font-family:"宋体"}
+
+.list{ margin-bottom:20px}
+.list .col-left{ width:980px}
+.list .col-right{ width:180px}
+
+.pad25{ margin-top:10px}
+.pad25 h3{ margin-top:30px}
+.pad25 h3.t2{ border-bottom:1px solid #ddd;  padding-bottom:20px}
+.pad25 h3.top{ background:#d8271c; line-height:45px; padding-bottom:0; color:#fff; text-align:center; border-bottom:none}
+.pad25 .sp{ margin-top:20px}
+.pad25 .sp li{ margin-bottom:10px}
+
+.list-gc{ margin-top:15px}
+.list-gc li{ height:102px; width:100%; padding:15px 0; border-bottom:1px dashed #ddd }
+.list-gc li img{ display:inline-block; float:left; margin-right:20px} 
+.list-gc li b{ font-size:18px; height:26px;  display:block}
+.list-gc li i{ font-style:normal; font-size:12px; background:#efefef; padding:2px 5px; margin-right:10px}
+
+.list-td{ width:980px; margin-top:30px}
+.list-td .box { float: left; width: 180px; height:270px; margin:0 20px 20px 0; display:inline; text-align: center; background:#e5e5e5}
+.list-td .box:hover{ background:#fbc509; transition:background 1s linear 0s; -moz-transition:background 1s linear 0s; -ms-transition:background 1s linear 0s; -o-transition:background 1s linear 0s; -webkit-transition:background 1s linear 0s}
+.list-td .mr0{ margin-right:0}
+.list-td .box .wz{ text-align:left; width:160px; padding:5px 10px 0 10px}
+.list-td .box .wz .qq{ width:50px; height:20px; color:#fff; font-size:12px; text-align:center; line-height:20px; display:inline-block; float:right; margin-top:8px; background:url(../../images/xczs/index.png) -302px -563px no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/index.png"); _background:none}
+.list-td .box .wz p{ display:inline; float:left; font-size:16px; font-weight:bold; line-height:18px}
+.list-td .box .wz p em{ font-size:12px; font-style:normal; font-weight:100}
+
+.phb{ margin-top:20px}
+.phb li{ height:80px; margin-bottom:10px; background:url(../../images/xczs/phb.png) 78px center no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/phb.png"); _background:none}
+.phb li.phb1{ background-color:#ff6600}
+.phb li.phb2{ background-color:#ff9933}
+.phb li.phb3{ background-color:#ffcc66}
+.phb li.phb4{ background-color:#ffcc99}
+.phb li.phb5{ background-color:#ffcccc}
+.phb li img{ width:80px; height:80px; display:inline; float:left; margin-right:15px; border-right:2px solid #fff }
+.phb li p{ display:inline; line-height:20px; float:left; font-size:12px}
+.phb li p b{ line-height:30px; font-size:14px}
+.jrwm{ margin-top:20px; height:35px; background:#fbc509; text-align:center; font-size:24px; line-height:35px; border-radius:5px;}
+
+.huod{ margin-top:30px}
+.huod h2{ font-size:16px; line-height:50px; background:#efefef; padding-left:20px; border-left:5px solid #ddd; margin-bottom:10px}
+.huod h2 span { float:right; font-size:12px; font-weight:100; margin-right:10px}
+.huod .tj{ width:980px}
+.huod .tj p.tt{ font-size:30px; line-height:60px}
+.huod .tj p span{ color:#d8271c; font-weight:bold}
+.huod .hdli{ width:180px}
+
+.huod .hdli{ border-top:1px dashed #eee;}
+.huod .hdli li{ height:35px; line-height:35px; border-bottom:1px dashed #eee; overflow:hidden}
+.huod .hdli li span{ font-family:"宋体"}
+.huod .hdli li:hover{ background:#f0f0f0}
+
+.jxsp .list-hf li{ width:366px; height:180px; display:inline; float:left; margin-right:25px}
+.jxsp .list-hf li.mr0{ margin-right:0}
+.jxsp .list-hf li p{ line-height:20px; margin-top:10px}
+.jxsp .list-hf li p span{color:#d8271c; font-weight:bold}
+
+.xinsh{ margin-top:30px}
+.xinsh h2{ font-size:16px; line-height:50px; background:#efefef; padding-left:20px; border-left:5px solid #ddd; margin-bottom:10px}
+.xinsh h2 span { float:right; font-size:12px; font-weight:100; margin-right:10px}
+.xinsh li{ width:380px; display:inline; float:left; margin:10px 30px 0 0}
+.xinsh li.mr0{margin-right:0}
+.xinsh li img{ width:150; height:130; float:left; display:inline; margin-right:20px}
+.xinsh li p b{ display:block; font-weight:bold; margin-bottom:10px}
+.xinsh li span{ line-height:18px; font-size:12px}
+
+.xinwe{ margin-top:30px; margin-bottom:30px}
+.xinwe h2{ font-size:16px; line-height:50px; background:#efefef; padding-left:20px; border-left:5px solid #ddd; margin-bottom:10px}
+.xinwe h2 span { float:right; font-size:12px; font-weight:100; margin-right:10px}
+.xinwe ul li{ width:380px; height:308px; display:inline; float:left; margin:0 30px 0 0}
+.xinwe ul li.mr0{ margin-right:0}
+.xinwe .lib li{ width:380px; height:35px; line-height:35px; border-bottom:1px dashed #eee; overflow:hidden}
+.xinwe .lib li span{ font-family:"宋体"}
+.xinwe .lib li:hover{ background:#f0f0f0}
+
+.bzzx{ margin-top:30px; margin-bottom:30px}
+.bzzx .cjwt{ width:980px}
+.bzzx .xiazai{ width:180px}
+
+.bzzx .cjwt h2{ font-size:16px; line-height:50px; background:#efefef; padding-left:20px; border-left:5px solid #ddd; margin-bottom:50px}
+
+.bzzx .cjwt .qa-m{ width:980px; background:url(../../images/xczs/qa-m.jpg) repeat-y}
+.bzzx .cjwt .qa-qt{ padding:20px 50px 0 90px; background:url(../../images/xczs/qa-qt.jpg) top no-repeat; font-weight:bold; font-size:16px}
+.bzzx .cjwt .qa-qb{ height:50px; background:url(../../images/xczs/qa-qb.jpg) bottom no-repeat}
+.bzzx .cjwt .qa-at{ padding:50px 50px 0 90px; background:url(../../images/xczs/qa-at.jpg) top no-repeat}
+.bzzx .cjwt .qa-ab{ height:40px; background:url(../../images/xczs/qa-ab.jpg) bottom no-repeat}
+.bzzx .cjwt .qab{ height:1px; margin-bottom:50px; padding-bottom:50px; border-bottom:1px dashed #ccc}
+
+.bzzx .xiazai h2{ font-size:16px; line-height:50px; background:#fbc509; padding-left:20px; border-left:5px solid #d8271c; margin-bottom:50px}
+.bzzx .xiazai ul li span{font-family:"宋体"}

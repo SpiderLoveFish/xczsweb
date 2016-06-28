@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+.page .p-tit{ width:100%; height:40px; margin-top:50px; border-bottom:2px solid #fbc509}
+.page .p-tit li{ display:inline; float:left; line-height:40px; padding:0 30px; text-align:center; font-size:16px;  border-bottom:2px solid #fbc509}
+.page .p-tit li.cur{ border:2px solid #fbc509; border-bottom:none; background:#fff; font-weight:bold; border-top-left-radius:10px;  border-top-right-radius:10px}
+.page .p-tit .crumbs{ display:inline; float:right; line-height:40px; font-size:12px}
+.content{ margin-top:50px; margin-bottom:50px}
+.content .left{ width:640px;  line-height:30px}
+.content .right{ width:480px}
+.list-fc li{ width:350px; height:300px; display:inline; float:left; margin:0px 25px}
+.list-fc li p{ line-height:30px}
+
+.left-lx{ display:inline; float:left; width:550px}
+.right-lx{ display:inline; float:right}
+.left-lx .lxwm{ padding:10px 20px; border-left:2px solid #fbc509; margin-bottom:20px; width:400px; background:#f8f8f8; font-size:20px; color:#888}
+
+.inbg{background:url(../../images/xczs/index.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/index.png"); _background:none}
+.ksbj .bjwz .bjwzbg{ width:205px; height:187px; background:#fbc509}
+.ksbj{ height:193px; margin-top:35px}
+.ksbj .bjbk{ width:1194px; height:187px; border:3px solid #fbc509}
+.ksbj .bjwz{ width:220px; height:187px; background:url(../../images/xczs/bjjt.png) no-repeat 205px 75px; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/xczs/bjjt.png"); _background:none}
+.ksbj .bjwz .bjwzbg{ width:181px; height:87px; background:#fbc509; padding:50px 12px}
+.ksbj .bjwz .bjwzbg .bjimg{ width:181px; height:87px; background-position:-154px -31px; text-indent:-9999px}
+.ksbj .bjbd{ padding:10px 8px 0 3px}
+.ksbj .bjbd iframe{ border-bottom:1px solid #dedede}
+
+.zxbx{ width:780px}
