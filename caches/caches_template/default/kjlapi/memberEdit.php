@@ -25,12 +25,13 @@ $(function(){
 })
 </script>
 <script>
+var tel="<?php echo $tel?>";
 function checkpost(){
     var realname=editM.realname.value;//手机号
     var gender=editM.gender.value;//验证码
     var email=editM.email.value;//姓名
     //var Yemail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; //邮箱验证
-    var url='index.php?m=kjlapi&updatemember';
+    var url='index.php?m=kjlapi&a=regwebsite';
     if(realname.length>10){
         alert("姓名要不得大于10个字符");
         editM.realname.focus();
@@ -44,21 +45,25 @@ function checkpost(){
     $.ajax({
          type: "POST",
          url: url,
-         data: {realname:realname, gender:gender,email:email},
-         dataType: "json",
+         data: {realname:realname, gender:gender,xq:email,id:'1'},
+         // dataType: "json",
          success: function(data){
             // alert(data.msg);
+            if(data=='true')
+            	alert("修改成功！");
+            else	alert("修改失败！"+data);
         }
      });
      return false;
 }
 function checkPasspost(){
-    var password=editP.password.value;//性别
-    var password1=editP.password1.value;//密码
+
+    var passwordold=editP.password.value;//性别
+    var password=editP.password1.value;//密码
     var password2=editP.password2.value;//密码
     var Ypass=/\S{6,}/;//密码验证
-    var url='index.php?m=kjlapi&updatepwd';
-    if(!password1){
+    var url='index.php?m=kjlapi&a=regwebsite';
+    if(!password){
         alert("请输入新密码");
         editP.password1.focus();
         return false;
@@ -68,23 +73,28 @@ function checkPasspost(){
         editP.password2.focus();
         return false;
     }
-    if(password1!=password2){
+    if(password!=password2){
         alert("两次新密码输入不同");
         editP.password1.focus();
         return false;
     }
-    if(!Ypass.exec(password1)){
-        alert("密码格式不正确，必须以字母开头的6-16 字母，数字");
-        editP.password1.focus();
-        return false;
-    }
+    // if(!Ypass.exec(password1)){
+    //     alert("密码格式不正确，必须以字母开头的6-16 字母，数字");
+    //     editP.password1.focus();
+    //     return false;
+    // }
+    	alert(tel);
     $.ajax({
          type: "POST",
          url: url,
-         data: {password:password,password1:password1},
-         dataType: "json",
+         data: {mobile:tel,passwordold:passwordold,password:password,id:'1'},
+         // dataType: "json",
          success: function(data){
              //alert(data.msg);
+             // alert(data.msg);
+            if(data=='true')
+            	alert("修改成功！");
+            else	alert("修改失败！"+data);
         }
      });
      return false;
@@ -103,10 +113,10 @@ function checkPasspost(){
           <a href="http://www.xczs.com">首页</a>
       <a href="index.php?m=kjlapi">家装DIY</a>
       <a href="#">看案例</a>
-                  <a id="MemberMenuChange" class="b-login"  href="index.php?m=kjlapi&a=initmember">>个人中心</a>
+                  <a id="MemberMenuChange" class="b-login"  href="index.php?m=kjlapi&a=initmember">个人中心</a>
       </div>
 				<span class="right" id="rightMenuHtml">
-        <a href="#">登录</a>|<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;
+         <?php echo L('hello'),$nickname?> |<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;
 			</span>
 		</div>
 	</div>

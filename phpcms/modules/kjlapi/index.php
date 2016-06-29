@@ -61,8 +61,10 @@ class index{
        showmessage(L('您还没用登录，或者已经过期，请先登录！！').$config_app_path,'?m=kjlapi');
      else
      {
-       echo $_GET['pid'];
+       //echo $_GET['pid'];
        $fid=$_GET['pid'];
+       $tel=param::get_cookie('tel');
+       $newfid= $this->gethxtfb($fid);
        include template('kjlapi','kjl_edit','default');
      }
    }
@@ -84,27 +86,72 @@ class index{
      }
      
    }
-   //更新编辑数据
-   public function  updatemember()
-   {
-     $userid = param::get_cookie('userid');
-          $tel = param::get_cookie('tel');
-          $nickname = param::get_cookie('nickname');
-          $sex = param::get_cookie('sex');
-          $village = param::get_cookie('village');
-     include template('kjlapi','memberEdit','default');
-   }
-   //更新密码
-  public function  updatepwd()
-   {
-     $userid = param::get_cookie('userid');
-          $tel = param::get_cookie('tel');
-          $nickname = param::get_cookie('nickname');
-          $sex = param::get_cookie('sex');
-          $village = param::get_cookie('village');
-     include template('kjlapi','memberEdit','default');
-   }
+  
+//获取3D基础数据
+ public function get3dfabasicdata()
+ {
+  //• GET /p/openapi/design/{designid}
+ $data=$this->getsyskjl();
+       //echo  $data['appkey'];
+      // appSecret
+      // appuid
+        //echo $_GET['id'];
+        $appuid='yxs@xczs.com';
+        $timestamp=$this->getMillisecond();
+       // echo md5('sdfaadsasdasd');
+        $sign=md5($this->appSecret.$this->appkey.$timestamp);
 
+       //  echo $sign;
+      //  /p/openapi/design/{designid}/copy?appuid={appuid}
+       $durl=  $this->kjl_url.'/p/openapi/design/'.$_POST['desid'].'?appkey='.$this->appkey.
+      '&appuid='.$data['appuid'].'&timestamp='.$timestamp.'&sign='.$sign;
+         echo  $this->commondfun($durl,'GET','','');
+
+ }
+ //获取户型图基础数据
+ public function getthebasicdata()
+ {
+ $data=$this->getsyskjl();
+       //•  GET /p/openapi/floorplan/{planid}/info
+      // appSecret
+      // appuid
+        //echo $_GET['id'];
+        $appuid='yxs@xczs.com';
+        $timestamp=$this->getMillisecond();
+       // echo md5('sdfaadsasdasd');
+        $sign=md5($this->appSecret.$this->appkey.$timestamp);
+
+       //  echo $sign;
+      //  /p/openapi/design/{designid}/copy?appuid={appuid}
+       $durl=  $this->kjl_url.'/p/openapi/floorplan/'.$_POST['fid'].'/info?appkey='.$this->appkey.
+      '&appuid='.$data['appuid'].'&timestamp='.$timestamp.'&sign='.$sign;
+         echo  $this->commondfun($durl,'GET','','');
+ }
+//保存酷家乐数据到ERP
+ public function savekjldata()
+ {
+  $header=array(
+          'Accept-Language: en-us,zh-cn;q=0.5',
+        'Content-Type: application/x-www-form-urlencoded',
+      'User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)'
+   // 'Content-Type: application/json'
+    );
+      $durl=$this->config_apiurl.'savekjl';
+        $params='fpId='.$_POST['fid'].
+            '&desid='.$_POST['desid'].
+            '&uid='.$_POST['tel'].
+            '&tel='.$_POST['tel'].
+            '&DyGraphicsName='.$_POST['name'].
+            '&imgtype='.$_POST['imgtype'].
+            '&img='.$_POST['img'].
+            '&style='.$_POST['style'].
+            '&pano='.$_POST['pano'].
+            '&simg='.$_POST['simg'];
+          $data= $this->commondfun($durl,'POST',$params,$header);
+         // var_dump($durl);
+         echo $data;
+
+ }
 
       //ERPAPI登录
   public function loginwebsite()
@@ -150,9 +197,10 @@ class index{
   }
 
 
-//ERPAPI注册
+//ERPAPI注册/修改、密码修改
   public function regwebsite()
   {
+      $tel = param::get_cookie('tel');//传给前台
       $header=array(
           'Accept-Language: en-us,zh-cn;q=0.5',
         'Content-Type: application/x-www-form-urlencoded',
@@ -160,31 +208,37 @@ class index{
    // 'Content-Type: application/json'
     );
       $durl=$this->config_apiurl.'regebsite';
-        $params='id='.//暂时没用
+        $params='id='.$_POST['id'].//1的时候，代表维护或修改密码
             '&tel='.$_POST['mobile'].
             '&pwd='.md5($_POST['password']).
             '&nickname='.$_POST['realname'].
             '&xq='.$_POST['xq'].
             '&sex='.$_POST['gender'];
           $data= $this->commondfun($durl,'POST',$params,$header);
-
-         
-         
-          if($data=='true')
+        
+          if($data==='true')
           {
-            
+            if($_POST['id']==='1')
+            {
+              echo $data;
+            }
+          else
+          {
             $arrreturn = array('nickname' => $_POST['realname'],'tel' => $_POST['mobile'],'xq' => $_POST['xq'],
               'sex' => $_POST['gender']);
              echo  json_encode($arrreturn);
-                $cookie_time = SYS_TIME+86400*30;
-               param::set_cookie('userid',$_POST['mobile'],$cookie_time);
-              param::set_cookie('tel', $_POST['mobile'],$cookie_time);
-              param::set_cookie('nickname',$_POST['realname'],$cookie_time);
-              param::set_cookie('sex',$_POST['gender'],$cookie_time); 
-              param::set_cookie('village',$_POST['xq'],$cookie_time);  
-             
+               
+               
+            }
+             // $cookie_time = SYS_TIME+86400*30;
+             // param::set_cookie('userid',$_POST['mobile'],$cookie_time);
+             //  param::set_cookie('tel', $_POST['mobile'],$cookie_time);
+             //  param::set_cookie('nickname',$_POST['realname'],$cookie_time);
+             //  param::set_cookie('sex',$_POST['gender'],$cookie_time); 
+             //  param::set_cookie('village',$_POST['xq'],$cookie_time); 
+ 
           }
-          else echo $data;
+          else echo $params;
          
 
   }
@@ -246,7 +300,7 @@ $header=array(
 
        $data= $this->commondfun($url,'POST',$arr,'');
 
-       echo json_decode($data);
+       echo $data;
        //echo json_decode($data)->errorMsg ;
       // $url=json_decode($data)->errorMsg;
        // if($url)  
@@ -267,7 +321,7 @@ $header=array(
    public   function get3dlist()
       {
         $data=$this->getsyskjl();
-       echo  $data['appkey'];
+       //echo  $data['appkey'];
       // appSecret
       // appuid
         //echo $_GET['id'];
@@ -303,6 +357,23 @@ $header=array(
          return json_decode($data,true);
        
         }
+        //获取副本号
+       public   function gethxtfb($para)
+      {
+       $syspara=$this->getsyskjl();
+        //echo $_GET['id'];
+         $timestamp=$this->getMillisecond();
+       // echo md5('sdfaadsasdasd');
+        $sign=md5($this->appSecret.$this->appkey.$syspara['appuid'].$timestamp);
+
+       // /p/openapi/floorplan?q={q}&start={start}&num={num}&cityid={cityid}
+      //  • GET /p/openapi/floorplan/{planid}/copy?appuid={appuid}
+    $durl=  $this->kjl_url.'/p/openapi/floorplan/'.$para.'/copy?appuid='.$syspara['appuid'].'&appkey='.$this->appkey.'&timestamp='.$timestamp.'&sign='.$sign;
+      $data=$this->commondfun($durl,'GET','','');
+      
+         return $data;
+       
+        }
 
 ///获取ERP中固定参数
         public function getsyskjl()
@@ -322,24 +393,25 @@ $header=array(
 
         }
 
+
 //登录酷家乐API
    public function login()
    {
 
-
-      $appuid='yxs@xczs.com';
+      $syspara=$this->getsyskjl();
+      
+      //$appuid='yxs@xczs.com';
       $timestamp=$this->getMillisecond();
        // echo md5('sdfaadsasdasd');
-        $sign=md5($this->appSecret.$this->appkey.$appuid.$timestamp);
+        $sign=md5($this->appSecret.$syspara['appkey'].$syspara['appuid'].$timestamp);
         $durl=  $this->kjl_url.'/p/openapi/login';
-     // echo $this->appSecret.$this->appkey.$appuid.$timestamp;
-   
+       
         $arr=array
         (
-            'appkey'=>$this->appkey,
+            'appkey'=>$syspara['appkey'],
             'timestamp'=>$timestamp,
             'sign'=>$sign,
-            'appuid'=>$appuid,
+            'appuid'=>$syspara['appuid'],
             'appuname'=>'',
             'appuemail'=>'',
             'appuphone'=>'',
@@ -347,21 +419,24 @@ $header=array(
             'appuaddr'=>'',
             'appuavatar'=>'',
             'apputype'=>0,
-            'dest'=>5
+            'dest'=>$_POST['dest'],
+            'designid'=>'',
+            'planid'=>$_POST['fid']
         );
-        
-
+         
          $data= $this->commondfun($durl,'POST',$arr,'');
-         $url=json_decode($data)->errorMsg;
-       if($url)  
-       {
-         $url = urldecode(trim($url));   
-          header("Location: $url");  
-        }
-        else
-        {
-           exit('Error Input,<a href="http://www.xczscom/">go back</a>'); 
-        }
+        // $url=json_decode($data)->errorMsg;         
+           
+         echo  $data;
+       // if($url)  
+       // {
+       //   $url = urldecode(trim($url));   
+       //    header("Location: $url");  
+       //  }
+       //  else
+       //  {
+       //     exit('Error Input,<a href="http://www.xczscom/">go back</a>'); 
+       //  }
 
    }
 
