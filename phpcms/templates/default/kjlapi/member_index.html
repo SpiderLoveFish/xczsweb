@@ -57,7 +57,7 @@
 			<div class="meb-nav left dInline">
 				<ul class="clearfix">
 					<li class="on"><a href="#">会员中心</a></li>
-                    <li ><a href="my_sj.html">我的方案</a></li>
+                    <li ><a href="index.php?m=kjlapi&a=initmysj">我的方案</a></li>
           
                     <li><a href="index.php?m=kjlapi&a=initmember_edit">账户管理</a></li>				
                 </ul>

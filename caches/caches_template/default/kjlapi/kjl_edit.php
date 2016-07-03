@@ -21,7 +21,8 @@
          var fid = "<?php echo $newfid?>";
          var tel="<?php echo $tel?>"
         var desid = '';
-        var names = "";
+        var names =''
+        var pics='';
      
                 $(function () {
             
@@ -100,10 +101,10 @@
                      desid:desid ,
                     // imgtype: data.imgtype ,
                     // simg: data.simg ,
-                    // img:data.img ,
+                    img:pics ,
                     // pano:data.pano ,
                     tel:tel ,
-                    name:name
+                    name:names
                 }
                 
                 
@@ -119,17 +120,17 @@
                         //  f_reload();
                         // alert(JSON.stringify(data));
                         if (data.action === 'kjl_completed') {
-                            location.href='index.php?m=kjlapi';
+                           // location.href='index.php?m=kjlapi';
                         }
                     }
 
                     else {
                        
                         if (data.action === 'kjl_completed') {
-                             alert(JSON.stringify(responseText));
+                            // alert(JSON.stringify(responseText));
                             // top.opener = null;
                             // top.close()
-                               location.href='index.php?m=kjlapi';
+                              // location.href='index.php?m=kjlapi';
                         }
                        
                     }
@@ -137,7 +138,7 @@
                 error: function () {
 
                     alert("保存失败2");
-                   location.href='index.php?m=kjlapi';
+                   //location.href='index.php?m=kjlapi';
                 }
             });
 
@@ -149,7 +150,7 @@
         {
             if (fid == ""||fid ==null)//如果fid为空
             {
-                 alert(desid);
+                // alert(desid);
                 $.ajax({
                     url: "index.php?m=kjlapi&a=get3dfabasicdata", type: "POST",
                     data: { desid: desid, rnd: Math.random() },
@@ -162,15 +163,20 @@
                         //alert(obj.obsDesignId + obj.obsPlan.name);
                         //names = obj.obsPlan.name
                         //fid = obj.obsPlan.obsPlanId
-                        for (var n in obj) {
-                            if (obj[n] == "null" || obj[n] == null)
-                                obj[n] = "";
-                          // alert(obj[n].obsPlan.obsPlanId);
-                            if (obj[n].obsDesignId == desid) {
-                                names = obj[n].name;
-                                fid = obj[n].obsPlan.obsPlanId;
-                            }
-                        }
+                        // for (var n in obj) {
+                        //     if (obj[n] == "null" || obj[n] == null)
+                        //         obj[n] = "";
+                        //   alert(obj[n].obsPlan.obsPlanId);
+                        //     if (obj[n].obsDesignId == desid) {
+
+                        //         names = obj[n].name;
+                        //         fid = obj[n].obsPlan.obsPlanId;
+                        //          pics=obj[n].obsPlan.pics;
+                        //     }
+                        // }
+                     names = obj.name;
+                                fid = obj.obsPlan.obsPlanId;
+                                 pics=obj.obsPlan.pics;
                         //alert(obj[n].obsPlan.obsPlanId + fid);
                         f_save(savedata, fid);
 
@@ -183,25 +189,28 @@
             }
             else
             {
-                alert(fid);
+               // alert(fid);
                 $.ajax({
                     url: "index.php?m=kjlapi&a=getthebasicdata", type: "POST",
                     data: {fid: fid, rnd: Math.random() },
                     //contentType: "application/json; charset=utf-8",
                     //dataType: "json",
                     success: function (data) {
-                        //alert(JSON.stringify(data));
+                       // alert(JSON.stringify(data));
                         // alert(data);
                         var obj = JSON.parse(data);
-                        for (var n in obj) {
-                            if (obj[n] == "null" || obj[n] == null)
-                                obj[n] = "";
-                            // alert(obj[n].name);
-                            if (obj[n].obsPlanId == fid) {
-                                names = obj[n].name
-                            }
-                        }
-
+                        // for (var n in obj) {
+                        //     if (obj[n] == "null" || obj[n] == null)
+                        //         obj[n] = "";
+                           
+                        //     if (obj[n].obsPlanId == fid) {
+                        //         names = obj[n].name;
+                        //         pics=obj[n].pics;
+                        //     }
+                        // }
+                         names =obj.name;
+                          pics=obj.pics;
+                       // names = JSON.stringify(data);
                         f_save(savedata,fid);
 
 

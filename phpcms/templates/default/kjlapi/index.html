@@ -64,15 +64,15 @@
       <!--<a href="shfw.html">售后服务</a>-->
       <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember" ">个人中心</a>
       </div>
-        当前城市：<input type="text" style="width:40px;" class="file" readonly="readonly"   id="inputcity"  value="苏州" >
+        当前城市：<input type="text" style="width:80px; background: #fee703;line-height: 20px;" class="file" readonly="readonly"   id="inputcity"  value="苏州" >
      <input type="hidden" id="cityid" value="166" />
     <span class="right" id="rightMenuHtml">
   
             <?php if(empty($nickname)) { ?> 
-  <a href="#" class="b-login" id="b-login">登录 </a>|<a href="#" id="b-regist">注册
+  <a href="#" class="b-login" id="b-login">登录 </a>|<a href="#" id="b-regist">注册</a>  
 <?php } else { ?> 
-         <a href="index.php?m=kjlapi&a=initmember"><?php echo L('欢迎你：'),$nickname?> </a>|<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;<img src="Public/Home/images/tel.png"/>   
-               <?php  }  ; ?> 
+         <a href="index.php?m=kjlapi&a=initmember"><?php echo L('欢迎你：'),$nickname?> </a>|<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;<img src="{IMG_PATH}xczs/images/tel.png"/>   
+             <?php  }  ; ?> 
                 </span> </div>
   </div>
   <div class="head-search"> 
@@ -85,8 +85,8 @@
 </script>
           <input type="submit" value="搜 索" class="right" />
       </div>
-      热门小区：
-         <a  onclick="searchHot('新城域')">新城域</a><a  onclick="searchHot('新城柏丽湾')">新城柏丽湾</a>
+    
+       <div class="hotWords left dInline">  热门小区：   <a  onclick="searchHot('新城域')">新城域</a>
               </div>
      
     </div>
@@ -95,53 +95,15 @@
 
   </div>
 <style type="text/css">
-    .file {
-    position: relative;
-    display: inline-block;
-    background: #fee703;
-    border: 1px solid #fee703;
-    border-radius: 4px;
-    padding: 4px 18px;
-    overflow: hidden;
-    color: #000;
-    text-decoration: none;
-    text-indent: 0;
-    line-height: 20px;
- 
-    
-   
-}
-.file input {
-    position: absolute;
-    font-size: 200px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-
-}
-.file:hover {
-    background: #ffd800;
-    border-color: #fff200;
-    color: #004974;
-    text-decoration: none;
-   
-}
 #banner .prevs,#banner .nexts{position:absolute;top:220px;z-index: 100;margin-top:-25px;}
 #banner .nexts{right:0;}
 #banner .banShow a{display:block;width: 100%;height:465px;}
+
 </style>
 <div id="banner">
   <div class="banShow clearfix" style="width:100%;"> 
     <a href="#" class="bDiv" style="background: url({IMG_PATH}xczs/images/y77.jpg) no-repeat center top;"></a>  
-    <a href="#" class="bDiv" style="background:url({IMG_PATH}xczs/images/1.jpg) no-repeat center top;"></a> 
-  </div>
-  <div class="b_btn wrap"> 
-    <!--<a class="prevs"><img src="images/l1.png"></a> 
-    <a class="nexts"><img src="images/r1.png"></a>-->   
-  </div>
-  
-    <!--<a class="prevs"><img src="images/l1.png"></a> 
-    <a class="nexts"><img src="images/r1.png"></a>-->   
+   </div>
   <div class="searchBox">
    <div class="xbg"></div>
    <div class="xnrj">
@@ -211,7 +173,7 @@
            
             <div class="proMore"> <table width="100%" border="0">
   <tr>
-    <td><a  >{$page}</a></td>
+    
      <!--    <td><a  onclick="more()">重新加载</a></td>
     <td><a  onclick="add()">自已画</a></td> -->
   </tr>
@@ -305,7 +267,7 @@
       </ul>
     </div>
     <a class="mini-gotop"></a>
-    <a class="wx1"><img src="i{IMG_PATH}xczs/mages/wx_1.png"></a>
+    <a class="wx1"><img src="{IMG_PATH}xczs/mages/wx_1.png"></a>
     <div class="wmImg hide">
       <img src="{IMG_PATH}xczs/images/wx_2.png">
     </div>
@@ -359,7 +321,9 @@
             </li>
             <li class="clearfix">
               <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
-              <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
+              <div id="send">
+                    <input type="button" "send_code right" id="btn" style="width:140px;height:42px" value="免费获取验证码" onClick="send(this)"/>
+                 
             </li>
             <li class="clearfix">
               <input class="input" type="text" value=""  name="realname" placeholder="姓名">
@@ -392,7 +356,6 @@
 </div>
 
 
-</div>
 <!--会员登录和注册弹出框结束-->
 
 
@@ -407,18 +370,18 @@
 <!--搜索下图片切换-->
 <!--<script type="text/javascript">
 $(function(){
-	$('.b_btn').hide();
-	$('#banner').hover(function(){
-		$(this).find('.b_btn').fadeIn();
-	},function(){
-		$(this).find('.b_btn').hide();
-	});
-	$('.bDiv').width($(window).width());
-	$('.banShow').width($(window).width());
-	$(window).resize(function(){
-		$('.bDiv').width($(window).width());
-		$('.banShow').width($(window).width());
-	})
+  $('.b_btn').hide();
+  $('#banner').hover(function(){
+    $(this).find('.b_btn').fadeIn();
+  },function(){
+    $(this).find('.b_btn').hide();
+  });
+  $('.bDiv').width($(window).width());
+  $('.banShow').width($(window).width());
+  $(window).resize(function(){
+    $('.bDiv').width($(window).width());
+    $('.banShow').width($(window).width());
+  })
 })
 </script> -->
 

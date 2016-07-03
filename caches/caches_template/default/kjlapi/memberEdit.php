@@ -62,7 +62,7 @@ function checkPasspost(){
     var password=editP.password1.value;//密码
     var password2=editP.password2.value;//密码
     var Ypass=/\S{6,}/;//密码验证
-    var url='index.php?m=kjlapi&a=regwebsite';
+    var url='index.php?m=kjlapi&a=updatepwd';
     if(!password){
         alert("请输入新密码");
         editP.password1.focus();
@@ -83,7 +83,6 @@ function checkPasspost(){
     //     editP.password1.focus();
     //     return false;
     // }
-    	alert(tel);
     $.ajax({
          type: "POST",
          url: url,
@@ -93,7 +92,9 @@ function checkPasspost(){
              //alert(data.msg);
              // alert(data.msg);
             if(data=='true')
-            	alert("修改成功！");
+            	{
+            		alert("修改成功！请重新登录！！");
+        }
             else	alert("修改失败！"+data);
         }
      });

@@ -36,6 +36,7 @@
       'comment' => '评论',
       'content' => '内容模型',
       'formguide' => '表单向导',
+      'kjlapi' => '酷家乐',
       'link' => '友情链接',
       'member' => '会员中心',
       'message' => '短消息',
@@ -46,7 +47,6 @@
       'special' => '专题',
       'vote' => '投票',
       'wap' => '手机门户',
-      'yp' => '黄页模板',
     ),
     'templates|default|vote' => 
     array (

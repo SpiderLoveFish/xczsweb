@@ -48,7 +48,8 @@ function regcheck(){
 	var mob=reg.mobile.value;//手机号
 	var ver=reg.verify.value;//验证码
 	var name=reg.realname.value;//姓名
-	var gen=reg.gender.value;//性别
+	//var gen=reg.gender.value;//性别
+	var gen=$("input:radio:checked").val();
 	var pass=reg.password.value;//密码
 	var carid=form.carid.value;
 	var carstatus=form.carstatus.value;
@@ -69,6 +70,11 @@ function regcheck(){
 		reg.verify.focus();
 		return false;
 	}
+	if(ver!=code){
+		alert("验证码错误");
+		reg.verify.focus();
+		return false;
+	}
 	if(pass==''){
 		alert("密码不能为空");
 		reg.password.focus();
@@ -85,7 +91,7 @@ function regcheck(){
 		 data: {mobile:mob, password:pass,verify:ver,realname:name,xq:xq,gender:gen,carid:carid,carstatus:carstatus},
 		 // dataType: "json",
 		 success: function(datas){
-		 	alert(datas);
+		 //	alert(datas);
 		      if(datas=="false")
 		      {
 		      	alert('注册失败！！！');
@@ -134,15 +140,19 @@ function check(){
                 //contentType: "application/json; charset=utf-8",
                 //dataType: "json",
                 success: function (data) {
-			
-			 var obj = eval(data);
-			if(obj[0].userid!=''&&obj[0].userid!=undefined){
+                	 
+			 if(data=='[]'){
+					alert("登录失败，用户名密码错误！");
+				}
+			    var obj = eval(data);
+					if(obj[0].userid!=''&&obj[0].userid!=undefined){
 				{
 					$('#popBox').fadeOut();
 					$("#MemberMenuChange").removeClass();
 					$("#MemberMenuChange").attr("href", "index.php?m=kjlapi&a=initmember");
 					$("#rightMenuHtml").html('<a href="index.php?m=kjlapi&a=initmember">'+obj[0].nickname+'</a>|<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;<img src="Public/Home/images/tel.png"/>');
 				}
+				
 			}
 		},
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -216,7 +226,12 @@ function cleckform(){
 	return false;
 }
 $('.send_code').click(function(){
-	var url='/Member/sendMess/channel/7';
+	createCode();
+    if (code == "") {
+        alert('验证码生成失败，关闭页面重新生成。');
+        return;
+    }
+	var url='index.php?m=kjlapi&a=sendsms';
 	var mobile=$('#mobile').val();
 	var m=/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
 	if(!m.exec(mobile)){
@@ -227,10 +242,11 @@ $('.send_code').click(function(){
 	$.ajax({
 		type: "POST",
 		url: url,
-		data: {mobile:mobile},
-		dataType: "json",
+		data: {mobile:mobile,YZM: code},
+		// dataType: "json",
 		success: function(data){
-			if(data.sta=='1'){
+			var obj=JSON.parse(data);
+			if(obj.returnsms.returnstatus == "Success"){
 				alert('发送成功');
 				$('#send').html('<a class="send_code right">已发送</a>');
 			}else{
@@ -240,6 +256,31 @@ $('.send_code').click(function(){
 	 });
 	 return false;
 })
+ //在全局 定义验证码 
+ var  code = ""; 
+function createCode() {
+  code = ""
+    var codeLength = 6;//验证码的长度  
+    var checkCode = document.getElementById("checkCode");
+    var selectChar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//所有候选组成验证码的字符，当然也可以用中文的  
+
+    for (var i = 0; i < codeLength; i++) {
+
+
+        var charIndex = Math.floor(Math.random() * 36);
+        code += selectChar[charIndex];
+
+
+    }
+    
+    //  alert(code);  
+    //if (checkCode) //这里不是很懂,有高手可以解释下  
+    //{
+    //    checkCode.className = "code";
+    //    checkCode.value = code;
+    //}
+
+}
 
 function Lmessage(){
 	var bankAuthSrc=leaveMess.bankAuthSrc.value;

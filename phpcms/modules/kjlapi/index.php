@@ -68,6 +68,19 @@ class index{
        include template('kjlapi','kjl_edit','default');
      }
    }
+     public function initmysj()
+   { 
+    if(param::get_cookie('userid')=="")
+       showmessage(L('您还没用登录，或者已经过期，请先登录！！').$config_app_path,'?m=kjlapi');
+     else
+     {
+       //echo $_GET['pid'];
+       $fid=$_GET['pid'];
+       $tel=param::get_cookie('tel');
+       $newfid= $this->gethxtfb($fid);
+       include template('kjlapi','my_sj','default');
+     }
+   }
 
 //初始化人员编辑
  public function initmember_edit()
@@ -101,10 +114,11 @@ class index{
        // echo md5('sdfaadsasdasd');
         $sign=md5($this->appSecret.$this->appkey.$timestamp);
 
-       //  echo $sign;
+        // echo $sign;
       //  /p/openapi/design/{designid}/copy?appuid={appuid}
        $durl=  $this->kjl_url.'/p/openapi/design/'.$_POST['desid'].'?appkey='.$this->appkey.
       '&appuid='.$data['appuid'].'&timestamp='.$timestamp.'&sign='.$sign;
+      //echo $durl;
          echo  $this->commondfun($durl,'GET','','');
 
  }
@@ -230,18 +244,44 @@ class index{
                
                
             }
-             // $cookie_time = SYS_TIME+86400*30;
-             // param::set_cookie('userid',$_POST['mobile'],$cookie_time);
-             //  param::set_cookie('tel', $_POST['mobile'],$cookie_time);
-             //  param::set_cookie('nickname',$_POST['realname'],$cookie_time);
-             //  param::set_cookie('sex',$_POST['gender'],$cookie_time); 
-             //  param::set_cookie('village',$_POST['xq'],$cookie_time); 
+              $cookie_time = SYS_TIME+86400*30;
+             param::set_cookie('userid',$_POST['mobile'],$cookie_time);
+              param::set_cookie('tel', $_POST['mobile'],$cookie_time);
+              param::set_cookie('nickname',$_POST['realname'],$cookie_time);
+              param::set_cookie('sex',$_POST['gender'],$cookie_time); 
+              param::set_cookie('village',$_POST['xq'],$cookie_time); 
  
           }
           else echo $params;
          
 
   }
+
+  public function updatepwd()
+  {
+      $tel = param::get_cookie('tel');//传给前台
+      $header=array(
+          'Accept-Language: en-us,zh-cn;q=0.5',
+        'Content-Type: application/x-www-form-urlencoded',
+      'User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)'
+   // 'Content-Type: application/json'
+    );
+      $durl=$this->config_apiurl.'regebsite';
+        $params='id='.$_POST['id'].//1的时候，代表维护或修改密码
+            '&tel='.$_POST['mobile'].
+            '&pwd='.md5($_POST['password']).
+            '&nickname='.$_POST['realname'].
+            '&xq='.$_POST['xq'].
+            '&sex='.$_POST['gender'];
+          $data= $this->commondfun($durl,'POST',$params,$header);
+        
+
+        echo $data;
+ 
+         
+       }
+
+
 //短信发送
 public function sendsms()
 {
@@ -251,8 +291,9 @@ $header=array(
       'User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)'
    // 'Content-Type: application/json'
     );
+  
       $durl=$this->config_apiurl.'GetSMS';
-        $params='mobile=15906266305&YZM=zstsls';    
+        $params='mobile='.$_POST['mobile'].'&YZM='.$_POST['YZM'];    
         $data= json_encode($this->commondfun($durl,'POST',$params,$header),true);   
       var_dump($data);
   //  return $data;
