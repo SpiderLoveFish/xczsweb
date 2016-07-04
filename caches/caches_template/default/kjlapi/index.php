@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/base.css">
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/index.css">
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/layout.css">
-<link href="<?php echo CSS_PATH;?>xczs/style.css" rel="stylesheet" type="text/css" />
  <link rel="stylesheet"  type="text/css" href="<?php echo CSS_PATH;?>xczs/css/cityselect.css">
 <script type="text/javascript" src="<?php echo JS_PATH;?>xczs/js/jquery-1.8.2.min.js"></script> 
 <script src="<?php echo JS_PATH;?>xczs/js/website.js"></script>
@@ -64,15 +63,15 @@
       <!--<a href="shfw.html">售后服务</a>-->
       <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember" ">个人中心</a>
       </div>
-        当前城市：<input type="text" style="width:80px; background: #fee703;line-height: 20px;" class="file" readonly="readonly"   id="inputcity"  value="苏州" >
+        当前城市：<input type="text" style="width:80px;" class="file" readonly="readonly"   id="inputcity"  value="苏州" >
      <input type="hidden" id="cityid" value="166" />
     <span class="right" id="rightMenuHtml">
   
             <?php if(empty($nickname)) { ?> 
-  <a href="#" class="b-login" id="b-login">登录 </a>|<a href="#" id="b-regist">注册</a>  
+  <a href="#" class="b-login" id="b-login">登录 </a>|<a href="#" id="b-regist">注册
 <?php } else { ?> 
          <a href="index.php?m=kjlapi&a=initmember"><?php echo L('欢迎你：'),$nickname?> </a>|<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;<img src="<?php echo IMG_PATH;?>xczs/images/tel.png"/>   
-             <?php  }  ; ?> 
+               <?php  }  ; ?> 
                 </span> </div>
   </div>
   <div class="head-search"> 
@@ -95,15 +94,46 @@
 
   </div>
 <style type="text/css">
-#banner .prevs,#banner .nexts{position:absolute;top:220px;z-index: 100;margin-top:-25px;}
+    .file {
+    position: relative;
+    display: inline-block;
+    background: #fee703;
+    border: 1px solid #fee703;
+    border-radius: 4px;
+    padding: 4px 18px;
+    overflow: hidden;
+    color: #000;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+ 
+    
+   
+}
+.file input {
+    position: absolute;
+    font-size: 200px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+
+}
+.file:hover {
+    background: #ffd800;
+    border-color: #fff200;
+    color: #004974;
+    text-decoration: none;
+   
+}
+#banner .prevs,#banner .nexts{position:absolute;top:220px;z-index: 100;margin-top:0px;}
 #banner .nexts{right:0;}
 #banner .banShow a{display:block;width: 100%;height:465px;}
-
 </style>
 <div id="banner">
   <div class="banShow clearfix" style="width:100%;"> 
     <a href="#" class="bDiv" style="background: url(<?php echo IMG_PATH;?>xczs/images/y77.jpg) no-repeat center top;"></a>  
-   </div>
+    <a href="#" class="bDiv" style="background:url(<?php echo IMG_PATH;?>xczs/images/1.jpg) no-repeat center top;"></a> 
+  </div>
   <div class="searchBox">
    <div class="xbg"></div>
    <div class="xnrj">
@@ -356,6 +386,7 @@
 </div>
 
 
+</div>
 <!--会员登录和注册弹出框结束-->
 
 

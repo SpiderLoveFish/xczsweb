@@ -323,6 +323,3 @@ function Lmessage(){
 
 
 
-
-BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4000337777, selector: 'BizQQWPA'});
-
