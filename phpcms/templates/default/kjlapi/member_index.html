@@ -31,10 +31,10 @@
 		<div class="wrap clearfix">
 			<a href="#" class="logo left"><img src="{IMG_PATH}xczs/images/logo.png"/></a>
 			<div class="nav left dInline" id="Div2">
-          <a href="http://www.xczs.com">首页</a>
+       
       <a href="index.php?m=kjlapi">家装DIY</a>
-      <a href="#">看案例</a>
-                  <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember">会员中心</a>
+ 
+              <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember">会员中心</a>
       </div>
 				<span class="right" id="rightMenuHtml">
 
@@ -56,32 +56,31 @@
 		<div class="meb-cont clearfix wrap">
 			<div class="meb-nav left dInline">
 				<ul class="clearfix">
-					<li class="on"><a href="#">会员中心</a></li>
-                    <li ><a href="index.php?m=kjlapi&a=initmysj">我的方案</a></li>
+					<li class="on"><a href="index.php?m=kjlapi&a=initmember">会员中心</a></li>
+                    <li ><a href="index.php?m=kjlapi&a=initmypic">我的方案</a></li>
           
-                    <li><a href="index.php?m=kjlapi&a=initmember_edit">账户管理</a></li>				
+                    <li><a href="index.php?m=kjlapi&a=initmember">账户管理</a></li>				
                 </ul>
 			</div>
-			<div class="meb-right right dInline">
-				<div class="mr-top">
+            	<div class="mr-top">
     <div class="mr-top-div clearfix">
         <span class="left">
             <img src="{IMG_PATH}xczs/images/photo.png"/>
         </span>
-        <div class="mr-infor left dInline" >
-           <span class="left" id="divhy"></span>
+        <div class="mr-infor left dInline">
+            <h2>会员姓名： <b> <?php echo $nickname?> </b><?php if($sex=='M') echo '先生'; else '小姐';?></h2>
+            <p>
+             <?php echo $tel?>  <b> <?php echo $village?></b></p>
         </div>
     </div>
 </div>
-	 		</div>
             <div class="mr-detail">
-					<div class="me-box">
+			  <div class="me-box">
 						<div class="mx-a">
 							<ul class="clearfix">
 								<li>
 									<img src="{IMG_PATH}xczs/images/hu1.png"/>
-									<span>您目前有 <a href="my_sj.html"><b>1</b></a> 个装修方案</span>
-								</li>
+								 <span>您目前有 <strong style="color:#F00"> <?php echo $count;?></strong> 个装修方案</span></li>
 							</ul>
 						</div>
 						<div class="mx-b">
@@ -91,7 +90,7 @@
 										<img src="{IMG_PATH}xczs/images/hu3.png"/>
 									</span>
 									<div class="mb-txt left dInline">
-										<h2>马上查看 <a href="my_sj.html">我的方案</a> </h2>
+										<h2>马上查看 <a href="index.php?m=kjlapi&a=initmypic">我的方案</a> </h2>
 										<p></p>
 									</div>
 								</li>
@@ -106,9 +105,9 @@
 								</li>-->
 							</ul>
 						</div>
-					</div>
+			  </div>
 					
-				</div>
+		  </div>
 		</div>
 	</div>
 </div>
@@ -121,45 +120,10 @@
   </div>
   <div class="foot-b"> Copyright © 2007 - 2016 昆山心成装饰设计工程有限公司 版权所有 苏ICP备09040162号 <br/>
  
-     </div>
+  </div>
 </div>
 <!--底部的结束-->
-<!--footer部分结束-->
-<div id="miniBus" style="right:-270px;">
-	<div class="mini-bar">
-		<div class="mini-barlist">
-			<ul>
-				<li class="miItem">
-				 
-				</li>
-				<li class="miItem">
-					 
-				</li>
-				<li>
-					 
-				</li>
-				<li class="callItem">
-				 
-				</li>
-				<li class="miItem">
-				 
-				</li>
-			</ul>
-		</div>
-		<a class="mini-gotop"></a>
-		<a class="wx1"><img src="{IMG_PATH}xczs/images/wx_1.png"></a>
-		<div class="wmImg hide">
-			<img src="{IMG_PATH}xczs/images/wx_2.png">
-		</div>
-	</div>
-	<div class="mini-cont">
-		<div class="mini-contlist">
-		 </div>
-	</div>
- </div>
- 
-<script type="text/javascript" src="{JS_PATH}xczs/js/miniBar.js"></script>
-<script type="text/javascript" src="{JS_PATH}xczs/js/lg_reg.js"></script>
+<!--footer部分结束--><script type="text/javascript" src="{JS_PATH}xczs/js/lg_reg.js"></script>
  
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta name="description" content="心成装饰"/>
 <meta name="keywords" content="心成装饰">
 <link rel="stylesheet" type="text/css" href="{CSS_PATH}xczs/css/hurst.css">
-<script src="{JS_PATH}xczs/js/jquery.cookie.js" type="text/javascript"></script>
+
 <link rel="stylesheet" type="text/css" href="{CSS_PATH}xczs/css/base.css">
 <link rel="stylesheet" type="text/css" href="{CSS_PATH}xczs/css/index.css">
 <link rel="stylesheet" type="text/css" href="{CSS_PATH}xczs/css/layout.css">
@@ -62,7 +62,7 @@ function checkPasspost(){
     var password=editP.password1.value;//密码
     var password2=editP.password2.value;//密码
     var Ypass=/\S{6,}/;//密码验证
-    var url='index.php?m=kjlapi&a=updatepwd';
+    var url='index.php?m=kjlapi&a=regwebsite';
     if(!password){
         alert("请输入新密码");
         editP.password1.focus();
@@ -83,6 +83,7 @@ function checkPasspost(){
     //     editP.password1.focus();
     //     return false;
     // }
+    	alert(tel);
     $.ajax({
          type: "POST",
          url: url,
@@ -92,9 +93,7 @@ function checkPasspost(){
              //alert(data.msg);
              // alert(data.msg);
             if(data=='true')
-            	{
-            		alert("修改成功！请重新登录！！");
-        }
+            	alert("修改成功！");
             else	alert("修改失败！"+data);
         }
      });
@@ -111,9 +110,9 @@ function checkPasspost(){
 		<div class="wrap clearfix">
 			<a href="#" class="logo left"><img src="{IMG_PATH}xczs/images/logo.png"/></a>
 			<div class="nav left dInline" id="Div2">
-          <a href="http://www.xczs.com">首页</a>
+        
       <a href="index.php?m=kjlapi">家装DIY</a>
-      <a href="#">看案例</a>
+     
                   <a id="MemberMenuChange" class="b-login"  href="index.php?m=kjlapi&a=initmember">个人中心</a>
       </div>
 				<span class="right" id="rightMenuHtml">
@@ -129,10 +128,10 @@ function checkPasspost(){
 		<div class="meb-cont clearfix wrap">
 			<div class="meb-nav left dInline">
 				<ul class="clearfix">
-					<li ><a href="member.aspx">会员中心</a></li>
-                  <!--  <%-- <li ><a href="#">我的设计</a></li>--%> -->
+					<li class="on"><a href="index.php?m=kjlapi&a=initmember">会员中心</a></li>
+                    <li ><a href="my_sj.html">我的方案</a></li>
           
-                    <li class="on"><a href="#">账户管理</a></li>				
+                    <li><a href="index.php?m=kjlapi&a=initmember_edit">账户管理</a></li>			
                 </ul>
 			</div>
 			<div class="meb-right right dInline">
@@ -245,7 +244,7 @@ function checkPasspost(){
 						</div>
 					</div>
 				</div>
-<%-- 结束 --%>
+<!-- 结束 -->
 
 
 	 		</div>
@@ -271,7 +270,7 @@ function checkPasspost(){
 	</div>
  </div>
  
-<script type="text/javascript" src="{JS_PATH}xczs/js/miniBar.js"></script>
+
 <script type="text/javascript" src="{JS_PATH}xczs/js/lg_reg.js"></script>
  
 </body>

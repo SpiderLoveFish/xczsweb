@@ -16,13 +16,17 @@
 
     <script type="text/javascript">
         var cid = '';
-        var style = 'insert';
+        var style = "<?php if($newfid) echo 'insert'; else echo 'Edit'; ?>";
         var dest = '2';
-         var fid = "<?php echo $newfid?>";
+         var fid = "<?php if($newfid) echo $newfid; else echo $fid; ?>";
          var tel="<?php echo $tel?>"
         var desid = '';
-        var names =''
+        var xq='';
+        var pf='';
+        var specName='';
+        var names = '';
         var pics='';
+      
      
                 $(function () {
             
@@ -79,7 +83,7 @@
             } else {
                 // 如果不支持postMessage， 则使用ie6/7的window共有属性navigator进行hack
                 window.navigator.listenKJL = function(msg) {
-                    alert(msg)
+                   // alert(msg)
                     // var data = JSON.parse(msg)
                     logData(JSON.parse(msg));
                 };
@@ -99,10 +103,10 @@
                      style:style,  
                     fid:fid ,
                      desid:desid ,
-                    // imgtype: data.imgtype ,
-                    // simg: data.simg ,
-                    img:pics ,
-                    // pano:data.pano ,
+                     imgtype: specName,
+                     simg: pf ,
+                     img:pics ,
+                     pano:xq ,
                     tel:tel ,
                     name:names
                 }
@@ -120,17 +124,17 @@
                         //  f_reload();
                         // alert(JSON.stringify(data));
                         if (data.action === 'kjl_completed') {
-                           // location.href='index.php?m=kjlapi';
+                            location.href='index.php?m=kjlapi';
                         }
                     }
 
                     else {
                        
                         if (data.action === 'kjl_completed') {
-                            // alert(JSON.stringify(responseText));
+                           //  alert(JSON.stringify(responseText));
                             // top.opener = null;
                             // top.close()
-                              // location.href='index.php?m=kjlapi';
+                               location.href='index.php?m=kjlapi';
                         }
                        
                     }
@@ -138,7 +142,7 @@
                 error: function () {
 
                     alert("保存失败2");
-                   //location.href='index.php?m=kjlapi';
+                   location.href='index.php?m=kjlapi';
                 }
             });
 
@@ -166,17 +170,19 @@
                         // for (var n in obj) {
                         //     if (obj[n] == "null" || obj[n] == null)
                         //         obj[n] = "";
-                        //   alert(obj[n].obsPlan.obsPlanId);
+                        //   // alert(obj[n].obsPlan.obsPlanId);
                         //     if (obj[n].obsDesignId == desid) {
-
                         //         names = obj[n].name;
                         //         fid = obj[n].obsPlan.obsPlanId;
-                        //          pics=obj[n].obsPlan.pics;
+                                
                         //     }
                         // }
-                     names = obj.name;
+                             names = obj.name;
                                 fid = obj.obsPlan.obsPlanId;
                                  pics=obj.obsPlan.pics;
+                                 pf=obj.obsPlan.srcArea;
+                                 xq=obj.obsPlan.commName;
+                                   specName=obj.obsPlan.specName;
                         //alert(obj[n].obsPlan.obsPlanId + fid);
                         f_save(savedata, fid);
 
@@ -202,15 +208,16 @@
                         // for (var n in obj) {
                         //     if (obj[n] == "null" || obj[n] == null)
                         //         obj[n] = "";
-                           
+                        //     // alert(obj[n].name);
                         //     if (obj[n].obsPlanId == fid) {
-                        //         names = obj[n].name;
-                        //         pics=obj[n].pics;
+                        //         names = obj[n].name
                         //     }
                         // }
-                         names =obj.name;
+                           names =obj.name;
                           pics=obj.pics;
-                       // names = JSON.stringify(data);
+                            pf=obj.srcArea;
+                        xq=obj.commName;
+                        specName=obj.specName;
                         f_save(savedata,fid);
 
 

@@ -2,12 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>心成装饰</title>
-<meta name="description" content="心成装饰"/>
-<meta name="keywords" content="心成装饰">
+<title>心成装饰-家装DIY</title>
+<meta name="description" content="心成装饰-家装DIY"/>
+<meta name="keywords" content="心成装饰-家装DIY">
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/base.css">
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/index.css">
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/layout.css">
+<link href="<?php echo CSS_PATH;?>xczs/style.css" rel="stylesheet" type="text/css" />
  <link rel="stylesheet"  type="text/css" href="<?php echo CSS_PATH;?>xczs/css/cityselect.css">
 <script type="text/javascript" src="<?php echo JS_PATH;?>xczs/js/jquery-1.8.2.min.js"></script> 
 <script src="<?php echo JS_PATH;?>xczs/js/website.js"></script>
@@ -20,7 +21,12 @@
             var startnum = 0;
             var searchnum = 10;
             var varCODE = "code";
-         
+            var key="<?php echo $keyword ?>";
+               $(function () {
+               $("#keyword").attr("value",key);
+              $("#keyword1").attr("value",key);
+                  })
+       
              LazyLoad.css(["<?php echo CSS_PATH;?>xczs/css/cityStyle.css"], function () {
                 LazyLoad.js(["<?php echo JS_PATH;?>xczs/js/cityScript.js"], function () {
                     var test = new citySelector.cityInit("inputcity");
@@ -43,6 +49,7 @@
             $('#popBox').fadeOut();
                
         }
+        
         </script>  
 
 <!--[if IE 6]>
@@ -54,38 +61,43 @@
 </head>
 <body>
 <div id="header">
+   
   <div class="top">
     <div class="wrap clearfix"> <a href="#" class="logo left"><img src="<?php echo IMG_PATH;?>xczs/images/logo.png"/></a>
       <div class="nav left dInline" id="headerMenu">
-      <a href="http://www.xczs.com">首页</a>
+      <!-- <a href="http://www.xczs.com">首页</a>-->
       <a href="index.php?m=kjlapi">家装DIY</a>
-      <a href="index.php?m=kjlapi">看案例</a>
+       <!--<a href="index.php?m=kjlapi">看案例</a>-->
       <!--<a href="shfw.html">售后服务</a>-->
-      <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember" ">个人中心</a>
+      <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember">个人中心</a>
       </div>
-        当前城市：<input type="text" style="width:80px;" class="file" readonly="readonly"   id="inputcity"  value="苏州" >
-     <input type="hidden" id="cityid" value="166" />
+   <form name="city" id="city" class="yjxj clearfix left" action="" method="post">   
+        当前城市：<input type="text" style="width:80px;" class="file" readonly   id="inputcity"  value="苏州" >
+     <input type="hidden" id="cityid" name="cityid" value="166" />
+   </form>
     <span class="right" id="rightMenuHtml">
   
             <?php if(empty($nickname)) { ?> 
   <a href="#" class="b-login" id="b-login">登录 </a>|<a href="#" id="b-regist">注册
 <?php } else { ?> 
-         <a href="index.php?m=kjlapi&a=initmember"><?php echo L('欢迎你：'),$nickname?> </a>|<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;<img src="<?php echo IMG_PATH;?>xczs/images/tel.png"/>   
+         <a href="index.php?m=kjlapi&a=initmember"><?php echo L('欢迎你：'),$nickname?> </a>|<a href="#" id="b-tuichu">退出</a>   
                <?php  }  ; ?> 
                 </span> </div>
   </div>
   <div class="head-search"> 
     <div class="wrap clearfix">
 
-           <div class="yjxj clearfix left" action="index.php?m=kjlapi" method="post" enctype="multipart/form-data">     
+           <form class="yjxj clearfix left" action="" method="post" enctype="multipart/form-data">     
  <input type="text" id="keyword" name="keyword" onkeyup="copyob1toob2()" placeholder="请输入小区名称" class="left" />
                       <script type="text/javascript">
                            var test = new Vcity.CitySelector({ input: 'keyword' });
 </script>
-          <input type="submit" value="搜 索" class="right" />
-      </div>
-    
-       <div class="hotWords left dInline">  热门小区：   <a  onclick="searchHot('新城域')">新城域</a>
+           
+          <input type="submit" value="搜 索"  class="right" />
+          <input type="hidden" id="cityid" name="cityid" value="166" />
+      </form>
+     
+         <a href="#">新城域</a> <a href="#">新城柏丽湾</a>
               </div>
      
     </div>
@@ -94,6 +106,10 @@
 
   </div>
 <style type="text/css">
+.diy-button {width: 250px;height: 50px;margin: 0px auto;position: relative;}
+.diy-button input{ width:240px; height:50px; background:#fbc608; border:0; text-align:center; color:#000; font-size:16px; cursor:pointer; }
+.diy-button input:hover{background:#f60;}
+
     .file {
     position: relative;
     display: inline-block;
@@ -125,7 +141,7 @@
     text-decoration: none;
    
 }
-#banner .prevs,#banner .nexts{position:absolute;top:220px;z-index: 100;margin-top:0px;}
+#banner .prevs,#banner .nexts{position:absolute;top:220px;z-index: 100;margin-top:-25px;}
 #banner .nexts{right:0;}
 #banner .banShow a{display:block;width: 100%;height:465px;}
 </style>
@@ -134,18 +150,26 @@
     <a href="#" class="bDiv" style="background: url(<?php echo IMG_PATH;?>xczs/images/y77.jpg) no-repeat center top;"></a>  
     <a href="#" class="bDiv" style="background:url(<?php echo IMG_PATH;?>xczs/images/1.jpg) no-repeat center top;"></a> 
   </div>
+  <div class="b_btn wrap"> 
+    <!--<a class="prevs"><img src="images/l1.png"></a> 
+    <a class="nexts"><img src="images/r1.png"></a>-->   
+  </div>
+  
+    <!--<a class="prevs"><img src="images/l1.png"></a> 
+    <a class="nexts"><img src="images/r1.png"></a>-->   
   <div class="searchBox">
    <div class="xbg"></div>
    <div class="xnrj">
    <img src="<?php echo IMG_PATH;?>xczs/images/in1.png"/>
-    <form class="clearfix" action="index.php?m=kjlapi" method='post'>
+    <form class="clearfix" action="" method='post'>
           
       <input type="text" maxlength="" onkeyup="copyob1toob()" id="keyword1" name="keyword"  placeholder="请输入小区名称" class="left" />
-       <input type="submit" value="" class="right" />
+       <input type="submit" value="" id="clientsbt"  class="right" />
    
         <script type="text/javascript">
             var test = new Vcity.CitySelector({ input: 'keyword1' });
 </script>
+<input type="hidden" id="cityid" name="cityid" value="166" />
     </form>
 
    </div>
@@ -174,21 +198,23 @@
           <div class="jpDl" style="display: block;">
      
           <?php $where = $_POST["keyword"]?>
+          <?php $cityid = $_POST["cityid "] ?>
           <!-- <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"json\" data=\"op=json&tag_md5=5d249570c2917dbd1327ac13d6dba1f0&url=http%3A%2F%2Flocalhost%2Fxczs%2Findex.php%3Fm%3Dkjlapi%26a%3Dgethxt&cache=86400\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$tag_cache_name = md5(implode('&',array('url'=>'http://localhost/xczs/index.php?m=kjlapi&a=gethxt',)).'5d249570c2917dbd1327ac13d6dba1f0');if(!$data = tpl_cache($tag_cache_name,86400)){$json = @file_get_contents('http://localhost/xczs/index.php?m=kjlapi&a=gethxt');$data = json_decode($json, true);if(!empty($data)){setcache($tag_cache_name, $data, 'tpl_data');}}?> -->
-            <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"vote\" data=\"op=vote&tag_md5=153e7d42b7213155cc0c9219bcc6024c&action=gethxt&nums=10&where=%24where&page=%24_GET%5B%27page%27%5D&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$vote_tag = pc_base::load_app_class("vote_tag", "vote");if (method_exists($vote_tag, 'gethxt')) {$pagesize = 20;$page = intval($_GET['page']) ? intval($_GET['page']) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$vote_total = $vote_tag->count(array('nums'=>'10','where'=>$where,'limit'=>$offset.",".$pagesize,'action'=>'gethxt',));$pages = pages($vote_total, $page, $pagesize, $urlrule);$data = $vote_tag->gethxt(array('nums'=>'10','where'=>$where,'limit'=>$offset.",".$pagesize,'action'=>'gethxt',));}?>
+            <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"vote\" data=\"op=vote&tag_md5=14734698a6c0f1b8242a912ceb8791aa&action=gethxt&nums=10&where=%24where&cityid=%24cityid&page=%24_GET%5B%27page%27%5D&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$vote_tag = pc_base::load_app_class("vote_tag", "vote");if (method_exists($vote_tag, 'gethxt')) {$pagesize = 20;$page = intval($_GET['page']) ? intval($_GET['page']) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$vote_total = $vote_tag->count(array('nums'=>'10','where'=>$where,'cityid'=>$cityid,'limit'=>$offset.",".$pagesize,'action'=>'gethxt',));$pages = pages($vote_total, $page, $pagesize, $urlrule);$data = $vote_tag->gethxt(array('nums'=>'10','where'=>$where,'cityid'=>$cityid,'limit'=>$offset.",".$pagesize,'action'=>'gethxt',));}?>
+            <input type="hidden" id="cityid" name="cityid" value="166" />
               <ul id="ullist" class="clearfix">
             <input type="hidden" name="keyname">
               <?php $n=1; if(is_array($data)) foreach($data AS $k => $r) { ?>              
               <li class="pve">
                 <div class="car-pic">
-                              <img src='<?php echo $r['pics'];?>'@!200x200   /> 
+                              <img src='<?php echo $r['pics'];?>@!200x200'   /> 
                           
                                 </div>
                                     <h3><?php echo $r['commName'];?></h3>
                                  <div class="price">面积：
                           <span class="num nBlue"><?php echo $r['srcArea'];?> </span><font> 平方米</font></div><p>户型：<?php echo $r['specName'];?></p>  
-                         <p><div class="login-button">
-                         <a id="dodiy" class="b-login" href="index.php?m=kjlapi&a=initkjl&pid=<?php echo $r['obsPlanId'];?>">
+                         <p><div class="diy-button">
+                         <a id="dodiy" href="index.php?m=kjlapi&a=initkjl&pid=<?php echo $r['obsPlanId'];?>">
                          <input type="button" class="fM"  style="cursor:pointer; width:160px; height:40px;" value="家装DIY"  ></input>
                          </a>
                          </div></p>' 
@@ -197,13 +223,14 @@
               <?php $n++;}unset($n); ?>
         </ul>
         <div class="c"></div>
-        <div id="pages" class="text-c" style="margin-top:20px"><?php echo pages(1000,$page);?></div>
+
+        <div id="pages" class="text-c" style="margin-top:20px"><?php echo pages(100,$page,10);?></div>
         <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
 
            
             <div class="proMore"> <table width="100%" border="0">
   <tr>
-    
+    <td><a  ><?php echo $page;?></a></td>
      <!--    <td><a  onclick="more()">重新加载</a></td>
     <td><a  onclick="add()">自已画</a></td> -->
   </tr>
@@ -297,7 +324,7 @@
       </ul>
     </div>
     <a class="mini-gotop"></a>
-    <a class="wx1"><img src="<?php echo IMG_PATH;?>xczs/mages/wx_1.png"></a>
+    <a class="wx1"><img src="<?php echo IMG_PATH;?>xczs/images/wx_1.png"></a>
     <div class="wmImg hide">
       <img src="<?php echo IMG_PATH;?>xczs/images/wx_2.png">
     </div>
@@ -309,7 +336,6 @@
 
 <!--右侧内容的结束-->
 
-<!--会员登录和注册弹出框开始-->
 <!--会员登录和注册弹出框开始-->
 <div id="popBox">
   <div class="popCont"> <a class="p_closed">关闭</a>
@@ -344,19 +370,17 @@
         </form>
       </div>
       <div class="p-dl">
-        <form class="registForm" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
+        <form  onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
           <ul class="login-items">
             <li class="clearfix">
-              <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
+            <label>手机号</label>  <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
             </li>
             <li class="clearfix">
-              <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
-              <div id="send">
-                    <input type="button" "send_code right" id="btn" style="width:140px;height:42px" value="免费获取验证码" onClick="send(this)"/>
-                 
+            <label>短信</label>  <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
+              <div id="send"><input type="button" "send_code right" id="btn" style="width:140px;height:42px" value="免费获取验证码" onClick="send(this)"/></div>
             </li>
             <li class="clearfix">
-              <input class="input" type="text" value=""  name="realname" placeholder="姓名">
+              <label>姓&nbsp;&nbsp;名</label><input class="input" type="text" value=""  name="realname" placeholder="姓名">
             </li>
             <li class="clearfix sex">
               <input type="radio" checked="" name="gender" value="M" />
@@ -364,10 +388,10 @@
               <input type="radio" name="gender" value="F" />
               女 </li>
             <li class="clearfix">
-              <input id="" class="input" type="password" name="password" value="" placeholder="输入密码（六位字符）">
+             <label>密&nbsp;&nbsp;码</label> <input id="" class="input" type="password" name="password" value="" placeholder="输入密码（六位字符）">
             </li>
               <li class="clearfix">
-            <input type="text" width="20" class="xq" name="xq" id="citySelect" placeholder="请输入小区">
+           <label>小&nbsp;&nbsp;区</label> <input type="text" width="20" class="xq" name="xq" id="citySelect" placeholder="请输入小区">
 <!-- 实例化 -->
 <script type="text/javascript">
     var test = new Vcity.CitySelector({ input: 'citySelect' });

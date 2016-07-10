@@ -319,7 +319,3 @@ function Lmessage(){
 	return false;
 }
 
-
-
-
-

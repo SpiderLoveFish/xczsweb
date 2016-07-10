@@ -34,6 +34,8 @@ class index{
           $nickname = param::get_cookie('nickname');
           $sex = param::get_cookie('sex');
           $village = param::get_cookie('village');
+          $keyword = param::get_cookie('keyword');
+           
               //$params="{user:\"admin\",pwd:\"admin\"}";  
           // var_dump(param::get_cookie('userid'));
                  include template('kjlapi','index','default');
@@ -50,11 +52,35 @@ class index{
           $nickname = param::get_cookie('nickname');
           $sex = param::get_cookie('sex');
           $village = param::get_cookie('village');
+             $count = param::get_cookie('count');
+
            include template('kjlapi','member_index','default');
 
      }
      
    }
+   //我的方案
+    public function initmypic()
+   {
+     if(param::get_cookie('userid')=="")
+       showmessage(L('您还没用登录，请先登录！！').$config_app_path,'?m=kjlapi');
+     else
+     {
+          $userid = param::get_cookie('userid');
+          $mobile = param::get_cookie('tel');
+          $nickname = param::get_cookie('nickname');
+          $sex = param::get_cookie('sex');
+          $village = param::get_cookie('village');
+          $keywordpic = param::get_cookie('keywordpic');
+         $count = param::get_cookie('count');
+
+
+           include template('kjlapi','my_pic','default');
+
+     }
+     
+   }
+   //新增
   public function initkjl()
    { 
     if(param::get_cookie('userid')=="")
@@ -68,6 +94,21 @@ class index{
        include template('kjlapi','kjl_edit','default');
      }
    }
+//编辑
+    public function initkjledit()
+   { 
+    if(param::get_cookie('userid')=="")
+       showmessage(L('您还没用登录，或者已经过期，请先登录！！').$config_app_path,'?m=kjlapi');
+     else
+     {
+       //echo $_GET['pid'];
+       $fid=$_GET['pid'];
+       $tel=param::get_cookie('tel');
+       //$newfid= $this->gethxtfb($fid);
+       include template('kjlapi','kjl_edit','default');
+     }
+   }
+
      public function initmysj()
    { 
     if(param::get_cookie('userid')=="")
@@ -99,7 +140,7 @@ class index{
      }
      
    }
-  
+ 
 //获取3D基础数据
  public function get3dfabasicdata()
  {
@@ -394,9 +435,31 @@ $header=array(
     $durl=  $this->kjl_url.'/p/openapi/floorplan?q=&start=0&num=8&cityid=1&appkey='.$this->appkey.'&timestamp='.$timestamp.'&sign='.$sign;
       //echo  $durl;
           $data=$this->commondfun($durl,'GET','','');
-           //echo $data.count($data['commName']);
-         return json_decode($data,true);
+           var_dump( json_decode($data,true));
+         //return json_decode($data,true);
        
+        }
+         //搜索ERP户型图接口
+   public function geterphxt($data) {
+    $nums= intval($data['nums']);
+    $page= intval($_GET['page']);
+   
+    $durl=  $this->config_apiurl.'Getkjl_api';
+     $params='mobile=15906266305&pageindex=1&pagesize=10';
+          $header=array(
+          'Accept-Language: en-us,zh-cn;q=0.5',
+        'Content-Type: application/x-www-form-urlencoded',
+      'User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)'
+   // 'Content-Type: application/json'
+    );
+      $datas= $this->commondfun($durl,'POST',$params,$header);  
+  $str=json_decode($datas,true);
+//echo $list[0]['tender_id'];
+//var_dump($str['Rows']);
+//var_dump($str['Total']);
+echo $str['Total'];
+      // return  json_decode($Rows,true);
+        
         }
         //获取副本号
        public   function gethxtfb($para)
@@ -482,10 +545,33 @@ $header=array(
    }
 
 //获取13位时间戳
-private function getMillisecond() { 
-  list($t1, $t2) = explode(' ', microtime()); 
-  return (float)sprintf('%.0f',(floatval($t1)+floatval($t2))*1000); 
-}
+// private function getMillisecond() { 
+//   list($t1, $t2) = explode(' ', microtime()); 
+//   return (float)sprintf('%.0f',(floatval($t1)+floatval($t2))*1000); 
+// }
+    private function getMillisecond() { 
+      return  $this->getTimestamp(13);
+    }
+   /**
+   * 
+  * 返回一定位数的时间戳，多少位由参数决定
+  *
+  * @author 陈博
+  * @param type 多少位的时间戳
+  * @return 时间戳
+   */
+  private function getTimestamp($digits = false) {
+    $digits = $digits > 10 ? $digits : 10;
+    $digits = $digits - 10;
+    if ((!$digits) || ($digits == 10))
+    {
+      return time();
+    }
+    else
+    {
+      return number_format(microtime(true),$digits,'','');
+    }
+  }
 
 //各种POST PUT GET DELETE 操作，使用CURL，
 //1、打开php.ini 2、找到;extension=php_curl.dll 3、将;号去掉 extension=php_curl.dll 4、重启服务器

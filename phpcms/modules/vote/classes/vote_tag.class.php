@@ -4,9 +4,11 @@ class vote_tag {
 	private $kjl_url;
       private $appkey;
       private $appSecret ;
+      private $config_apiurl;
  	public function __construct() {
 		$this->subject_db = pc_base::load_model('vote_subject_model');
 		$this->option_db = pc_base::load_model('vote_option_model');
+		  $this->config_apiurl = pc_base::load_config('system','kjlaip_path');
 		 $this->kjl_url = 'http://www.kujiale.com';
                          $this->appkey = 'HVrYQDp4r6';
                           $this->appSecret ='982Wq8XKnqeSxNCtHg6nkaRZ0n4lm8u2';
@@ -129,19 +131,57 @@ class vote_tag {
 					),
 		);
 	}
+
+
+
+//搜索ERP户型图接口
+   public function geterphxt($data) {
+   	$nums= intval($data['nums']);
+   	$page= intval($_GET['page']);
+   	$where=$data['where'];
+   	if($where=="")
+   		$where=$_GET['keyword'];
+   	  if( $page==0)
+        $page=1;
+      // $params='mobile=15906266305&pageindex=1&pagesize=10';
+          param::set_cookie('keywordpic',$data['where']);  
+
+    $durl=  $this->config_apiurl.'Getkjl_api';
+    $params='mobile='.$data['mobile'].'&pageindex='.$page.'&pagesize='.$data['nums'].'&strwhere='.$data['where'];
+          $header=array(
+          'Accept-Language: en-us,zh-cn;q=0.5',
+        'Content-Type: application/x-www-form-urlencoded',
+      'User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)'
+   // 'Content-Type: application/json'
+    );
+			$datas= $this->commondfun($durl,'POST',$params,$header);  
+	 $str=json_decode($datas,true);
+//echo $list[0]['tender_id'];
+//var_dump($str['Rows']);
+	   param::set_cookie('count',$str['Total']);  
+	 //$count=$str['Total'];
+       return  $str['Rows'];
+        
+        }
+
 	//搜索户型图接口
    public function gethxt($data) {
    	$nums= intval($data['nums']);
    	$page= intval($_GET['page']);
+   	$cityid=$_POST['cityid'];
+   	if($cityid=='')
+   	$cityid=166;//苏州
    	   //echo  $data['where'] ;
    	   //echo $page;
+   	 param::set_cookie('keyword',$data['where']);  
+
          $timestamp=$this->getMillisecond();
        // echo md5('sdfaadsasdasd');
         $sign=md5($this->appSecret.$this->appkey.$timestamp);
 
        // /p/openapi/floorplan?q={q}&start={start}&num={num}&cityid={cityid}
       //  /p/openapi/design/{designid}/copy?appuid={appuid}
-    $durl=  $this->kjl_url.'/p/openapi/floorplan?q='.$data['where'].'&start='.$page*$nums.'&num='.$nums.'&cityid=166&appkey='.$this->appkey.'&timestamp='.$timestamp.'&sign='.$sign;
+    $durl=  $this->kjl_url.'/p/openapi/floorplan?q='.$data['where'].'&start='.$page*$nums.'&num='.$nums.'&cityid='.$cityid.'&appkey='.$this->appkey.'&timestamp='.$timestamp.'&sign='.$sign;
    
 		return	json_decode($this->commondfun($durl,'GET','',''),true);
          // echo  $this->commondfun($durl,'GET','','');
@@ -150,10 +190,33 @@ class vote_tag {
 
 
 //获取13位时间戳
-private function getMillisecond() { 
-  list($t1, $t2) = explode(' ', microtime()); 
-  return (float)sprintf('%.0f',(floatval($t1)+floatval($t2))*1000); 
-}
+// private function getMillisecond() { 
+//   list($t1, $t2) = explode(' ', microtime()); 
+//   return (float)sprintf('%.0f',(floatval($t1)+floatval($t2))*1000); 
+// }
+         private function getMillisecond() { 
+      return  $this->getTimestamp(13);
+    }
+   /**
+   * 
+  * 返回一定位数的时间戳，多少位由参数决定
+  *
+  * @author 陈博
+  * @param type 多少位的时间戳
+  * @return 时间戳
+   */
+  private function getTimestamp($digits = false) {
+    $digits = $digits > 10 ? $digits : 10;
+    $digits = $digits - 10;
+    if ((!$digits) || ($digits == 10))
+    {
+      return time();
+    }
+    else
+    {
+      return number_format(microtime(true),$digits,'','');
+    }
+  }
 
 //各种POST PUT GET DELETE 操作，使用CURL，
 //1、打开php.ini 2、找到;extension=php_curl.dll 3、将;号去掉 extension=php_curl.dll 4、重启服务器
