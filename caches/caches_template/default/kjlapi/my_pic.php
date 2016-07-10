@@ -1,0 +1,337 @@
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?>﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>心成装饰-家装DIY</title>
+<meta name="description" content="心成装饰-家装DIY"/>
+<meta name="keywords" content="心成装饰-家装DIY">
+<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/base.css">
+<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/layout.css">
+<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/sell.css">
+<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>xczs/css/alert.css">
+<link href="<?php echo CSS_PATH;?>xczs/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body,td,th {
+	font-family: "Microsoft Yahei";
+}
+</style>
+<script type="text/javascript" src="<?php echo JS_PATH;?>xczs/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+	 $("#keyword").val("<?php $keywordpic; ?>");
+	// alert("<?php echo $count ?>");
+</script>
+
+
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+<script>
+        DD_belatedPNG.fix('*');
+    </script>
+<![endif]--> 
+</head>                                        
+<body>
+<!--头部的开始-->
+<div id="header">
+	<div class="top">
+		<div class="wrap clearfix">
+			<a href="#" class="logo left"><img src="http://www.ksxczs.com/statics/images/xczs/images/logo.png"/></a>
+			<div class="nav left dInline" id="headerMenu">
+       <a href="index.php?m=kjlapi">家装DIY</a>
+ 
+              <a id="MemberMenuChange" class="b-login" href="index.php?m=kjlapi&a=initmember">会员中心</a>
+      </div>
+			<span class="right" id="rightMenuHtml">
+		
+        <?php echo L('hello'),$nickname?> |<a href="#" id="b-tuichu">退出</a>|&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+	</div>
+	<div class="head-search">
+		<div class="wrap clearfix">
+		          <form class="yjxj clearfix left" action="" method="post" enctype="multipart/form-data">     
+ 
+			<div class="yjxj clearfix left" action="" method="post" enctype="multipart/form-data">
+        <input type="text" name="keyword" placeholder="搜索您所建立的方案" class="left" />
+        <input type="submit" value="搜 索" class="right" />
+      </div>
+        </form>
+			<div class="hotWords left dInline">
+				搜索我的方案<a href="#"></a>     
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--头部的结束-->
+
+<style>
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #000;}
+input:-moz-placeholder, textarea:-moz-placeholder {color:#000;}
+input::-moz-placeholder, textarea::-moz-placeholder {color:#000;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#000;}
+.select-item{margin-bottom: 25px;}
+</style>
+
+<div id="about">
+<div class="wrap">
+      <div class="in-tit clearfix">
+      <div class="inBox clearfix"></div>
+        <h1 class="left dInline">我的方案</h1>
+        <!--<div class="end-time right dInline">
+					距离结束只剩下<b>20</b>小时<b>50</b>分<b>18</b>秒
+				</div>--> 
+      </div>
+  <div class="inBox clearfix">
+        
+          <div class="thPic2 left dInline pve">
+            <ul class="clearfix">
+             <?php $where = $_POST["keyword"]?>
+           <!-- <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"json\" data=\"op=json&tag_md5=5d249570c2917dbd1327ac13d6dba1f0&url=http%3A%2F%2Flocalhost%2Fxczs%2Findex.php%3Fm%3Dkjlapi%26a%3Dgethxt&cache=86400\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$tag_cache_name = md5(implode('&',array('url'=>'http://localhost/xczs/index.php?m=kjlapi&a=gethxt',)).'5d249570c2917dbd1327ac13d6dba1f0');if(!$data = tpl_cache($tag_cache_name,86400)){$json = @file_get_contents('http://localhost/xczs/index.php?m=kjlapi&a=gethxt');$data = json_decode($json, true);if(!empty($data)){setcache($tag_cache_name, $data, 'tpl_data');}}?> -->
+            <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"vote\" data=\"op=vote&tag_md5=5f2f09502cbceaa80d6e9d93aa480cac&action=geterphxt&mobile=%24mobile&where=%24where&nums=10&page=%24_GET%5B%27page%27%5D&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$vote_tag = pc_base::load_app_class("vote_tag", "vote");if (method_exists($vote_tag, 'geterphxt')) {$pagesize = 20;$page = intval($_GET['page']) ? intval($_GET['page']) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$vote_total = $vote_tag->count(array('mobile'=>$mobile,'where'=>$where,'nums'=>'10','limit'=>$offset.",".$pagesize,'action'=>'geterphxt',));$pages = pages($vote_total, $page, $pagesize, $urlrule);$data = $vote_tag->geterphxt(array('mobile'=>$mobile,'where'=>$where,'nums'=>'10','limit'=>$offset.",".$pagesize,'action'=>'geterphxt',));}?>
+              <ul id="ullist" class="clearfix">
+
+            <input type="hidden" name="keyname">
+              <?php $n=1; if(is_array($data)) foreach($data AS $k => $r) { ?>            
+                <li class="pve"> <a href="index.php?m=kjlapi&a=initkjledit&pid=<?php echo $r['fpId'];?>" target="_blank"> 
+                <span class="icon icon_th"></span>
+                <div class="car-pic"><p><?php echo date('Y-m-d', $r['dotime']);?><b>小区：</b><?php echo $r['pano'];?></p> <img src='<?php echo $r['img'];?>@!200x200' /> </div>
+               <p><b>面积：</b><?php echo $r['simg'];?> <b>户型：</b><?php echo $r['imgtype'];?></p>
+            
+                </a></li>
+              <?php $n++;}unset($n); ?>
+        </ul>
+        <div class="c"></div>
+        <div id="pages" class="text-c" style="margin-top:20px"><?php echo pages($count,$page,10);?></div>
+        <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
+             
+              
+            </ul>
+</div>
+
+  </div>
+
+<style type="text/css">
+.sa-list li{width:223px;}
+#showDiv{width:800px;height:270px;background:#fff;position:relative;}
+#showDiv .s_gu{position:absolute;right:20px;bottom:15px;}
+.guBox{padding:20px 30px 0 30px;font-size:20px;}
+.guBox h3{color:#000;font-weight: normal;margin-top:30px;font-size:20px;}
+.guBox h3 strong{font-weight: bold;color:#0756b5}
+.guBox p{color:#427dc6;font-weight: bold;padding:10px 0;}
+.guBox span{font-size:14px;display:inline-block;margin-right:15px;}
+.guBox span font{font-weight: bold;color:#437ec6;font-size:14px;}
+</style>
+</div>
+
+<!--底部的开始-->
+<div id="footer">
+  <div class="foot-a1">
+    <div class="wrap">
+      <ul class="clearfix">
+        
+      </ul>
+    </div>
+  </div>
+  <div class="foot-a">
+    <div class="wrap clearfix">
+      <div class="fDl left dInline "> <strong>心成承诺</strong>
+        <ul>
+          <li><a href="#">质量保证</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>装修指南</strong>
+        <ul>
+          <li><a href="#" target="_blank">五要素</a></li>
+          <li><a href="#" target="_blank">20年前开桑塔纳的大款们，</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>售后服务</strong>
+        <ul>
+          <li><a href="#">24小时上门</a></li>
+          <li><a href="#">免费维修</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>关于心成</strong>
+        <ul>
+          <li><a href="#" target="_blank">心成动态</a></li>
+          <li><a href="#" target="_blank">心成荣誉</a></li>
+          <li><a href="#" target="_blank">心成优势</a></li>
+          <li><a href="#" target="_blank">联系心成</a></li>
+          <li><a href="#" target="_blank">心成团队</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>心成文化</strong>
+        <ul>
+          <li><a href="#">改变、规范、引领市场</a></li>
+          <li><a href="#">颠覆装修理念</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline fDl1">
+        <div class="dLx"> <img src="http://www.ksxczs.com/statics/images/xczs/images/dLx.jpg"/> </div>
+        <div style="height:50px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-b"> Copyright © 2007 - 2016 昆山心成装饰设计工程有限公司 版权所有 苏ICP备09040162号 <br/>
+ 
+     </div>
+</div>
+<!--底部的结束--
+<div id="miniBus" style="right:-270px;">
+	<div class="mini-bar">
+		<div class="mini-barlist">
+			<ul>
+				<li class="miItem">
+					<div class="mini-mi browse">
+						<i class="mini-ease"></i>
+						<code></code>
+						<span>最近浏览</span>
+					</div>
+				</li>
+				<li class="miItem">
+					<div class="mini-mi collec">
+						<i class="mini-ease"></i>
+						<code></code>
+						<span>我的收藏</span>
+					</div>
+				</li>
+				<li>
+					<div class="mini-mi service">
+						<i class="mini-ease" id="BizQQWPA"></i>
+						<code></code>
+						<span>在线客服</span>
+                       
+					</div>
+				</li>
+				<li class="callItem">
+					<div class="mini-mi callback">
+						<i class="mini-ease"></i>
+						<code></code>
+						<span>意见反馈</span>
+					</div>
+				</li>
+				<li class="miItem">
+					<div class="mini-mi shopping">
+						<i class="mini-ease"></i>
+						<code></code>
+						<span>对比车辆</span>
+						<abbr id="Dbnumber">0</abbr>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<a class="mini-gotop"></a>
+		<a class="wx1"><img src="http://www.ksxczs.com/statics/images/xczs/images/wx_1.png"></a>
+		<div class="wmImg hide">
+			<img src="http://www.ksxczs.com/statics/images/xczs/images/wx_2.png">
+		</div>
+	</div>
+	<div class="mini-cont">
+		<div class="mini-contlist">
+			<div class="mini-ni">
+				<div class="mini-h clearfix">
+					<a class="mini-close mini-ease lf-fl"></a>
+					<span class="lf-fr"><code>最近浏览</code></span>
+				</div>
+				<div class="miList" id="Liulan">
+					<ul>
+											</ul>
+				</div>
+			</div>
+			<div class="mini-ni">
+				<div class="mini-h clearfix">
+					<a class="mini-close mini-ease lf-fl"></a>
+					<span class="lf-fr"><code>我的收藏</code></span>
+				</div>
+				<div class="miList" id="shoucang">
+					<ul>
+											</ul>
+<a  href="javascript:void(0)" class="mini-fav b-login">查看更多收藏</a>
+				</div>
+			</div>
+			<!--<div class="mini-ni">
+				<div class="mini-h clearfix">
+					<a class="mini-close mini-ease lf-fl"></a>
+					<span class="lf-fr"><code>在线客服</code></span>
+				</div>
+			</div>-->
+			
+
+<div id="popBox">
+	<div class="popCont">
+		<a class="p_closed">关闭</a>
+		<div class="p-tab">
+			<a>会员登录<i></i></a><a>会员注册<i></i></a>
+		</div>
+		<div class="p-detail">
+			<div class="p-dl">
+				<form onsubmit="return check();" enctype="multipart/form-data" method="post" name="form" id="form">
+					 <ul class="login-items">
+			            <li>
+			                <label>用户名(手机号)</label>
+			                <input class="input" type="text" value="" maxlength="32"  name="username" placeholder="请输入您的手机号">
+			            </li>
+			            <li>
+			                <label>密码</label>
+			                <input class="input" type="password" value="" maxlength="16"  name="password">
+			            </li>
+			        </ul>
+			        <div class="login-check">
+			            <input type="checkbox" name="checkbox" style=" width:auto;" />
+			            <label>记住我</label>
+			            <a href="../../../Meet/editPass">忘记登录密码？</a>
+			        </div>
+			        <div class="login-button">
+                    	<input type="hidden" value="" name="carid" class="ordercarid" />
+                        <input type="hidden" value="" name="carstatus" class="orderstatus" />
+			            <input type="button"  value="登&nbsp;&nbsp;&nbsp;&nbsp;陆" class="fM" onclick="$('#form').submit()" />
+			        </div>
+			        <!--<div class="security-pro">
+			            <i class="icons ver-green-down"></i>
+			            <b>您的信息已通过256位SGC加密保护，数据传输安全</b>
+			        </div>-->
+				</form>
+			</div>
+			<div class="p-dl">
+				<form class="registForm" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
+					 <ul class="login-items">
+			            <li class="clearfix">
+			                <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
+			            </li>
+			            <li class="clearfix">
+			                <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
+			                <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
+			            </li>
+			            <li class="clearfix">
+			                <input class="input" type="text" value=""  name="realname" placeholder="姓名">
+			            </li>
+			            <li class="clearfix sex">
+			                <input type="radio" checked="" name="gender" value="M" /> 男&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="F" /> 女 
+			            </li>
+			            <li class="clearfix">
+			                <input id="" class="input" type="password" name="password" value="" placeholder="输入密码（六位字符）">
+			            </li>
+			        </ul>
+			      
+			        <div class="login-button">
+                    	<input type="hidden" value="" name="carid" class="ordercarid" />
+                        <input type="hidden" value="" name="carstatus" class="orderstatus" />
+			            <input type="button"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
+			        </div>
+			      
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="http://www.ksxczs.com/statics/js/xczs/js/js/miniBar.js"></script>
+<script type="text/javascript" src="http://www.ksxczs.com/statics/js/xczs/js/js/lg_reg.js"></script>
+<!--<script type="text/javascript" src="js/borrow.js"></script>-->
+
+
+
+
+
+</body>
+</html>
